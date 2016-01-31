@@ -85,11 +85,48 @@ extension DependencyContainer {
 }
 
 public protocol StoryboardInstantiatable {
-  func instantiatedFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer)
+  
+  /**
+   This method will be called if you set a `dipTag` attirbute on the object in a storyboard.
+   
+   - parameters:
+      - tag: The tag value, that was set on the object in a storyboard
+      - container: The `DependencyContainer` associated with storyboards
+
+   The type that implements this protocol should be registered in `UIStoryboard.container`.
+   Default implementation of that method calls `resolveDependenciesOf(_:forTag:)`
+   and pass it `self` instance and the tag.
+
+   Usually you will not need to override the default implementation of this method
+   if you registered the type of the instance as a concret type in the container.
+   Then you only need to add conformance to `StoryboardInstantiatable`.
+
+   You may want to override it if you want to add custom logic before/after resolving dependencies
+   or you want to resolve the instance as implementation of some protocol which it conforms to.
+   
+   - warning: This method will be called after `init?(coder:)` but before `awakeFromNib` method.
+              Thus the instance may be not completely setup yet.
+
+   **Example**:
+   
+   ```swift
+   extension MyViewController: SomeProtocol { ... }
+   
+   extension MyViewController: StoryboardInstantiatable {
+     func didInstantiateFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer) {
+       //resolve dependencies of the instance as SomeProtocol type
+       try! container.resolveDependenciesOf(self as SomeProtocol, forTag: tag)
+       //do some additional setup here
+     }
+   }
+   ```
+   
+  */
+  func didInstantiateFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer)
 }
 
 extension StoryboardInstantiatable {
-  public func instantiatedFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer) {
+  public func didInstantiateFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer) {
     do {
       try container.resolveDependenciesOf(self, forTag: tag)
     }
@@ -100,7 +137,7 @@ extension StoryboardInstantiatable {
 }
 
 extension Storyboard {
-  ///Container that will be used to resolve _dependencies of components_, created by stroyboard.
+  ///A container that will be used to resolve dependencies of instances, created by stroyboards.
   static public var container: DependencyContainer?
 }
 
@@ -108,6 +145,8 @@ let DipTagAssociatedObjectKey = UnsafeMutablePointer<Int8>.alloc(1)
 
 extension NSObject {
   
+  ///A string tag that will be used to resolve dependencies of this instance
+  ///if it implements `StoryboardInstantiatable` protocol.
   @IBInspectable private(set) public var dipTag: String? {
     get {
       return objc_getAssociatedObject(self, DipTagAssociatedObjectKey) as? String
@@ -118,7 +157,7 @@ extension NSObject {
       if let key = newValue, container = Storyboard.container {
         let tag = DependencyContainer.Tag.String(key)
         if let instantiatable = self as? StoryboardInstantiatable {
-          instantiatable.instantiatedFromStoryboard(withTag: tag, container: container)
+          instantiatable.didInstantiateFromStoryboard(withTag: tag, container: container)
         }
       }
     }
