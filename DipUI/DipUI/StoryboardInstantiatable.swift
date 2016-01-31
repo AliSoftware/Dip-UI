@@ -34,6 +34,56 @@
 
 import Dip
 
+extension DependencyContainer {
+
+  /**
+   Resolves dependencies of passed in instance.
+   Use this method to resolve dependencies of object created by storyboard.
+   The type of the instance should be registered in the container.
+   
+   You should call this method only when you override default implementation of
+   `didInstantiateFromStoryboard(withTag:container:)` of `StoryboardInstantiatable` protocol.
+
+   This method will do the same as `resolve(tag:)`, but instead of creating new intance
+   it will use passed in instance as resolved instance.
+   
+   - parameters:
+      - instance: The object which dependencies should be resolved
+      - tag: An optional tag used to register the type (`T`) in the container
+   
+   **Example**:
+   
+   ```swift
+   class ViewController: UIViewController, ServiceDelegate {
+     var service: Service?
+   }
+   
+   container.register(tag: "vc") { ViewController() }
+     .resolveDependencies { container, controller in
+       controller.service = try container.resolve() as Service
+       controller.service.delegate = controller
+   }
+
+   class ServiceImp: Service {
+     weak var delegate: ServiceDelegate?
+   }
+
+   container.register { ServiceImp() as Service }
+   
+   let controller = ...
+   container.resolveDependencies(controller, forTag: "vc")
+   //controller.service?.delegate === controller
+   ```
+   
+   - seealso: `register(tag:_:factory:)`, `didInstantiateFromStoryboard(withTag:container:)`
+   
+   */
+  public func resolveDependenciesOf<T>(instance: T, forTag tag: Tag? = nil) throws {
+    try resolve(tag: tag) { (factory: () throws -> T) in instance }
+  }
+  
+}
+
 public protocol StoryboardInstantiatable {
   func instantiatedFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer)
 }

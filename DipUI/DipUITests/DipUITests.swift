@@ -53,17 +53,6 @@ class DipUITests: XCTestCase {
     return Storyboard(name: String(Storyboard.self), bundle: bundle)
   }()
   
-  override func setUp() {
-    super.setUp()
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    
-  }
-  
-  override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    super.tearDown()
-  }
-  
   func testThatViewControllerHasDipTagProperty() {
     let viewController = storyboard.instantiateViewControllerWithIdentifier("DipViewController")
     XCTAssertEqual(viewController.dipTag, "vc")
@@ -101,6 +90,91 @@ class DipUITests: XCTestCase {
     Storyboard.container = container
     storyboard.instantiateViewControllerWithIdentifier("DipViewController")
     XCTAssertTrue(resolved, "Should resolve when container is set.")
+  }
+  
+}
+
+protocol SomeService: class {
+  weak var delegate: SomeServiceDelegate? { get set }
+}
+protocol SomeServiceDelegate: class { }
+class SomeServiceImp: SomeService {
+  weak var delegate: SomeServiceDelegate?
+  init(delegate: SomeServiceDelegate) {
+    self.delegate = delegate
+  }
+  init(){}
+}
+
+protocol OtherService: class {
+  weak var delegate: OtherServiceDelegate? { get set }
+}
+protocol OtherServiceDelegate: class {}
+class OtherServiceImp: OtherService {
+  weak var delegate: OtherServiceDelegate?
+  init(delegate: OtherServiceDelegate){
+    self.delegate = delegate
+  }
+  init(){}
+}
+
+
+protocol SomeScreen: class {
+  var someService: SomeService! { get set }
+  var otherService: OtherService! { get set }
+}
+
+class ViewControllerImp: SomeScreen, SomeServiceDelegate, OtherServiceDelegate {
+  var someService: SomeService!
+  var otherService: OtherService!
+  init(){}
+}
+
+extension DipUITests {
+  
+  func testThatItDoesNotCreateNewInstanceWhenResolvingDependenciesOfExternalInstance() {
+    let container = DependencyContainer()
+    
+    //given
+    var factoryCalled = false
+    container.register(.ObjectGraph) { () -> SomeScreen in
+      factoryCalled = true
+      return ViewControllerImp() as SomeScreen
+    }
+    
+    //when
+    let screen = ViewControllerImp()
+    try! container.resolveDependenciesOf(screen as SomeScreen)
+    
+    //then
+    XCTAssertFalse(factoryCalled, "Container should not create new instance when resolving dependencies of external instance.")
+  }
+  
+  func testThatItResolvesInstanceThatImplementsSeveralProtocols() {
+    let container = DependencyContainer()
+
+    //given
+    container.register(.ObjectGraph) { ViewControllerImp() as SomeScreen }
+      .resolveDependencies { container, resolved in
+        
+        //manually provide resolved instance for the delegate properties
+        resolved.someService = try container.resolve() as SomeService
+        resolved.someService.delegate = resolved as? SomeServiceDelegate
+        resolved.otherService = try container.resolve(withArguments: resolved as! OtherServiceDelegate) as OtherService
+    }
+    
+    container.register(.ObjectGraph) { SomeServiceImp() as SomeService }
+    container.register(.ObjectGraph) { OtherServiceImp(delegate: $0) as OtherService }
+    
+    //when
+    let screen = try! container.resolve() as SomeScreen
+    
+    //then
+    XCTAssertNotNil(screen.someService)
+    XCTAssertNotNil(screen.otherService)
+    
+    XCTAssertTrue(screen.someService.delegate === screen)
+    XCTAssertTrue(screen.otherService.delegate === screen)
   }
   
 }
