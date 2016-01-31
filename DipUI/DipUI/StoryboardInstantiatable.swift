@@ -54,18 +54,16 @@ extension Storyboard {
   static public var container: DependencyContainer?
 }
 
+let DipTagAssociatedObjectKey = UnsafeMutablePointer<Int8>.alloc(1)
+
 extension NSObject {
-  
-  private struct AssociatedTags {
-    private static var dipTag = 0
-  }
   
   @IBInspectable private(set) public var dipTag: String? {
     get {
-      return objc_getAssociatedObject(self, &AssociatedTags.dipTag) as? String
+      return objc_getAssociatedObject(self, DipTagAssociatedObjectKey) as? String
     }
     set {
-      objc_setAssociatedObject(self, &AssociatedTags.dipTag, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+      objc_setAssociatedObject(self, DipTagAssociatedObjectKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
       
       if let key = newValue, container = Storyboard.container {
         let tag = DependencyContainer.Tag.String(key)
