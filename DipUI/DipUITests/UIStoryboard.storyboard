@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5AO-J3-7R4">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Ole-tM-Q3l">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="ehZ-7Y-MeO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bZ0-tI-Yi9"/>
+                        <viewControllerLayoutGuide type="bottom" id="UX3-8G-Z4L"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jmi-i3-vAY">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="100"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H12-WL-igv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="646" y="461"/>
+        </scene>
+        <!--Dip View Controller-->
+        <scene sceneID="Lgf-SY-hfd">
+            <objects>
+                <viewController storyboardIdentifier="DipViewController" id="5AO-J3-7R4" userLabel="Dip View Controller" customClass="DipViewController" customModule="DipUI_iOSTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JYl-DM-U2W"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xg8-gz-BQL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aU0-uz-rHf">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="100"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="dipTag" value="vc"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4iF-mX-EX6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="646" y="200"/>
+        </scene>
+    </scenes>
+</document>
