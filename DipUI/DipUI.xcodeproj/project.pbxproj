@@ -90,6 +90,10 @@
 /* Begin PBXFileReference section */
 		092624801C5E8ACD00A31D1A /* UIStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UIStoryboard.storyboard; sourceTree = "<group>"; };
 		092624831C5E8AFE00A31D1A /* NSStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NSStoryboard.storyboard; sourceTree = "<group>"; };
+		0969D1B91C60099600A2142B /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
+		0969D1BA1C60099600A2142B /* Dip-UI.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Dip-UI.podspec"; path = "../Dip-UI.podspec"; sourceTree = "<group>"; };
+		0969D1BB1C60099600A2142B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		0969D1BC1C60099600A2142B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		09B0360E1C5E8028001EA5B7 /* DipUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DipUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B036111C5E8028001EA5B7 /* DipUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DipUI.h; sourceTree = "<group>"; };
 		09B036131C5E8028001EA5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -168,6 +172,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		0969D1B81C60098400A2142B /* Podspec Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				0969D1B91C60099600A2142B /* CHANGELOG.md */,
+				0969D1BA1C60099600A2142B /* Dip-UI.podspec */,
+				0969D1BB1C60099600A2142B /* LICENSE */,
+				0969D1BC1C60099600A2142B /* README.md */,
+			);
+			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
 		09B036041C5E8028001EA5B7 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +190,7 @@
 				09B0361C1C5E8029001EA5B7 /* DipUITests */,
 				0926247F1C5E8A7F00A31D1A /* Frameworks */,
 				09B0360F1C5E8028001EA5B7 /* Products */,
+				0969D1B81C60098400A2142B /* Podspec Metadata */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -758,7 +774,7 @@
 				INFOPLIST_FILE = DipUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-OSX";
 				PRODUCT_NAME = DipUI;
 				SDKROOT = macosx;
@@ -780,7 +796,7 @@
 				INFOPLIST_FILE = DipUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-OSX";
 				PRODUCT_NAME = DipUI;
 				SDKROOT = macosx;
