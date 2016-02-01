@@ -28,12 +28,10 @@ import XCTest
 #if os(iOS) || os(tvOS)
   import UIKit
   typealias Storyboard = UIStoryboard
-  typealias Responder = UIResponder
   typealias ViewController = UIViewController
 #else
   import AppKit
   typealias Storyboard = NSStoryboard
-  typealias Responder = NSResponder
   typealias ViewController = NSViewController
   
   extension NSStoryboard {
@@ -75,7 +73,7 @@ class DipUITests: XCTestCase {
         XCTFail("Should not resolve when container is not set.")
     }
     
-    Storyboard.container = container
+    DependencyContainer.uiContainer = container
     storyboard.instantiateViewControllerWithIdentifier("ViewController")
   }
   
@@ -87,7 +85,7 @@ class DipUITests: XCTestCase {
         resolved = true
     }
     
-    Storyboard.container = container
+    DependencyContainer.uiContainer = container
     storyboard.instantiateViewControllerWithIdentifier("DipViewController")
     XCTAssertTrue(resolved, "Should resolve when container is set.")
   }

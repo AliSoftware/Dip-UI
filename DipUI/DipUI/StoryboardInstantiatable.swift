@@ -22,16 +22,6 @@
 // THE SOFTWARE.
 //
 
-#if os(iOS) || os(tvOS)
-  import UIKit
-  typealias Storyboard = UIStoryboard
-  typealias Responder = UIResponder
-#else
-  import AppKit
-  typealias Storyboard = NSStoryboard
-  typealias Responder = NSResponder
-#endif
-
 import Dip
 
 extension DependencyContainer {
@@ -136,9 +126,9 @@ extension StoryboardInstantiatable {
   }
 }
 
-extension Storyboard {
+extension DependencyContainer {
   ///A container that will be used to resolve dependencies of instances, created by stroyboards.
-  static public var container: DependencyContainer?
+  static public var uiContainer: DependencyContainer?
 }
 
 let DipTagAssociatedObjectKey = UnsafeMutablePointer<Int8>.alloc(1)
@@ -154,7 +144,7 @@ extension NSObject {
     set {
       objc_setAssociatedObject(self, DipTagAssociatedObjectKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
       
-      if let key = newValue, container = Storyboard.container {
+      if let key = newValue, container = DependencyContainer.uiContainer {
         let tag = DependencyContainer.Tag.String(key)
         if let instantiatable = self as? StoryboardInstantiatable {
           instantiatable.didInstantiateFromStoryboard(withTag: tag, container: container)
