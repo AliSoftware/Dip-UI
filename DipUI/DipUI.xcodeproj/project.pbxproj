@@ -100,7 +100,7 @@
 		09B036181C5E8029001EA5B7 /* DipUI-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DipUI-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B0361D1C5E8029001EA5B7 /* DipUITests.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = DipUITests.swift; sourceTree = "<group>"; tabWidth = 2; };
 		09B0361F1C5E8029001EA5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09B036281C5E812D001EA5B7 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiatable.swift; sourceTree = "<group>"; };
+		09B036281C5E812D001EA5B7 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryboardInstantiatable.swift; path = ../../Sources/StoryboardInstantiatable.swift; sourceTree = "<group>"; };
 		09B0363E1C5E8358001EA5B7 /* DipUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DipUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B036471C5E8358001EA5B7 /* DipUI-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DipUI-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B0365A1C5E836B001EA5B7 /* DipUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DipUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
