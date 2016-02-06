@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+    </dependencies>
+    <scenes>
+        <!--Dip View Controller-->
+        <scene sceneID="adI-oe-5KL">
+            <objects>
+                <viewController storyboardIdentifier="DipViewController" id="fzZ-tH-vfC" customClass="DipViewController" customModule="DipUI_OSXTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="vso-jO-9Ex">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="dipTag" value="vc"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <customObject id="wjM-mL-nmG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="311" y="339"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Rwu-gt-fAa">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="tne-ER-mvb" sceneMemberID="viewController">
+                    <view key="view" id="Kwe-OO-w0D">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="0u1-hv-ZtW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="311" y="729"/>
+        </scene>
+    </scenes>
+</document>
