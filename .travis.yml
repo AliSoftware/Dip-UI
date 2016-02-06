@@ -1,0 +1,17 @@
+language: objective-c
+osx_image: xcode7.2
+
+# cache: cocoapods
+# before_install:
+# - gem install cocoapods # Since Travis is not always on latest version
+
+install:
+- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+- curl -OlL "https://github.com/Carthage/Carthage/releases/download/0.11/Carthage.pkg" && sudo installer -pkg "Carthage.pkg" -target / && rm "Carthage.pkg"
+
+script:
+- set -o pipefail && xcodebuild test -scheme DipUI-iOS -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- set -o pipefail && xcodebuild test -scheme DipUI-OSX -sdk macosx -destination 'platform=OS X,arch=x86_64' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- set -o pipefail && xcodebuild test -scheme DipUI-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=latest' ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- pod lib lint --quick
+- carthage build --no-skip-current
