@@ -22,6 +22,12 @@
 // THE SOFTWARE.
 //
 
+#if os(iOS) || os(tvOS)
+  import UIKit
+#else
+  import AppKit
+#endif
+
 import Dip
 
 extension DependencyContainer {
