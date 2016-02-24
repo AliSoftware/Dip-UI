@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.0.2
+
+* Added Swift Package Manager support.  
+  [@ilyapuchka](https://github.com/ilyapuchka)
+
 ## 0.0.1
 
 #### Initial release
