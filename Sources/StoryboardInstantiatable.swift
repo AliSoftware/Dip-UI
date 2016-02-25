@@ -38,7 +38,7 @@ extension DependencyContainer {
    The type of the instance should be registered in the container.
    
    You should call this method only when you override default implementation of
-   `didInstantiateFromStoryboard(withTag:container:)` of `StoryboardInstantiatable` protocol.
+   `didInstantiateFromStoryboard(_:tag:)` of `StoryboardInstantiatable` protocol.
 
    This method will do the same as `resolve(tag:)`, but instead of creating new intance
    it will use passed in instance as resolved instance.
@@ -67,14 +67,14 @@ extension DependencyContainer {
    container.register { ServiceImp() as Service }
    
    let controller = ...
-   container.resolveDependencies(controller, forTag: "vc")
+   container.resolveDependencies(controller, tag: "vc")
    //controller.service?.delegate === controller
    ```
    
-   - seealso: `register(tag:_:factory:)`, `didInstantiateFromStoryboard(withTag:container:)`
+   - seealso: `register(tag:_:factory:)`, `didInstantiateFromStoryboard(_:tag:)`
    
    */
-  public func resolveDependenciesOf<T>(instance: T, forTag tag: Tag? = nil) throws {
+  public func resolveDependenciesOf<T>(instance: T, tag: Tag? = nil) throws {
     try resolve(tag: tag) { (factory: () throws -> T) in instance }
   }
   
@@ -90,7 +90,7 @@ public protocol StoryboardInstantiatable {
       - container: The `DependencyContainer` associated with storyboards
 
    The type that implements this protocol should be registered in `UIStoryboard.container`.
-   Default implementation of that method calls `resolveDependenciesOf(_:forTag:)`
+   Default implementation of that method calls `resolveDependenciesOf(_:tag:)`
    and pass it `self` instance and the tag.
 
    Usually you will not need to override the default implementation of this method
@@ -109,22 +109,22 @@ public protocol StoryboardInstantiatable {
    extension MyViewController: SomeProtocol { ... }
    
    extension MyViewController: StoryboardInstantiatable {
-     func didInstantiateFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer) {
+     func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag) {
        //resolve dependencies of the instance as SomeProtocol type
-       try! container.resolveDependenciesOf(self as SomeProtocol, forTag: tag)
+       try! container.resolveDependenciesOf(self as SomeProtocol, tag: tag)
        //do some additional setup here
      }
    }
    ```
    
   */
-  func didInstantiateFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer)
+  func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag)
 }
 
 extension StoryboardInstantiatable {
-  public func didInstantiateFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer) {
+  public func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag) {
     do {
-      try container.resolveDependenciesOf(self, forTag: tag)
+      try container.resolveDependenciesOf(self, tag: tag)
     }
     catch {
       print(error)
@@ -150,12 +150,12 @@ extension NSObject {
     set {
       objc_setAssociatedObject(self, DipTagAssociatedObjectKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
       
-      if let key = newValue, container = DependencyContainer.uiContainer {
-        let tag = DependencyContainer.Tag.String(key)
-        if let instantiatable = self as? StoryboardInstantiatable {
-          instantiatable.didInstantiateFromStoryboard(withTag: tag, container: container)
+      if let
+        tag = newValue.map(DependencyContainer.Tag.String),
+        container = DependencyContainer.uiContainer,
+        instantiatable = self as? StoryboardInstantiatable {
+          instantiatable.didInstantiateFromStoryboard(container, tag: tag)
         }
-      }
     }
   }
   

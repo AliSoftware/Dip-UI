@@ -94,14 +94,14 @@ Now when view controller will be loaded from a storyboard Dip-UI will intercept 
 
 ### StoryboardInstantiatable
 
- `StoryboardInstantiatable` protocol defines single method `didInstantiateFromStoryboard(withTag:_:)` and provides its default implementation. In most cases you will not need to override it. But if you register your view controller as an impementation of some protocol instead of concrete type, or want to perform some pre/post actions, you will need to override it like this:
+ `StoryboardInstantiatable` protocol defines single method `didInstantiateFromStoryboard(_:tag:)` and provides its default implementation. In most cases you will not need to override it. But if you register your view controller as an impementation of some protocol instead of concrete type, or want to perform some pre/post actions, you will need to override it like this:
  
  ```swift
  container.register { MyViewController() as MyScene }
  
  extension MyViewController: StoryboardInstantiatable {
-   func didInstantiateFromStoryboard(withTag tag: DependencyContainer.Tag, container: DependencyContainer) {
-     try! container.resolveDependenciesOf(self as MyScene, forTag: tag)
+   func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag) {
+     try! container.resolveDependenciesOf(self as MyScene, tag: tag)
    }
  }
  ```
