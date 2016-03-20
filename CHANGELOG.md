@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.0
+
+* Fixed Dip version in podspec.
+
 ## 0.0.2
 
 * Added Swift Package Manager support.  
