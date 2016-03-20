@@ -24,6 +24,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Sources/**/*.swift'
 
-  s.dependency 'Dip', '~> 4.1.0'
+  s.dependency 'Dip', '>= 4.1.0'
 
 end
