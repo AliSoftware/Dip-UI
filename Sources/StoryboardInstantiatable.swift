@@ -118,24 +118,18 @@ public protocol StoryboardInstantiatable {
    ```
    
   */
-  func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?)
-  var dipTag: String? { get }
+  func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) throws
 }
 
 extension StoryboardInstantiatable {
-  public func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) {
-    do {
-      try container.resolveDependenciesOf(self, tag: tag)
-    }
-    catch {
-      print(error)
-    }
+  public func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) throws {
+    try container.resolveDependenciesOf(self, tag: tag)
   }
 }
 
 extension DependencyContainer {
-  ///A container that will be used to resolve dependencies of instances, created by stroyboards.
-  static public var uiContainer: DependencyContainer?
+  ///Containers that will be used to resolve dependencies of instances, created by stroyboards.
+  static public var uiContainers: [DependencyContainer] = []
 }
 
 let DipTagAssociatedObjectKey = UnsafeMutablePointer<Int8>.alloc(1)
@@ -150,13 +144,13 @@ extension NSObject {
     }
     set {
       objc_setAssociatedObject(self, DipTagAssociatedObjectKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+      guard let instantiatable = self as? StoryboardInstantiatable else { return }
       
       let tag = dipTag.map(DependencyContainer.Tag.String)
-      if let
-        container = DependencyContainer.uiContainer,
-        instantiatable = self as? StoryboardInstantiatable {
-          instantiatable.didInstantiateFromStoryboard(container, tag: tag)
-        }
+        
+      for container in DependencyContainer.uiContainers {
+        guard let _ = try? instantiatable.didInstantiateFromStoryboard(container, tag: tag) else { continue }
+      }
     }
   }
   
