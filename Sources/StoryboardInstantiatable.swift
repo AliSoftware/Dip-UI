@@ -118,11 +118,12 @@ public protocol StoryboardInstantiatable {
    ```
    
   */
-  func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag)
+  func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?)
+  var dipTag: String? { get }
 }
 
 extension StoryboardInstantiatable {
-  public func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag) {
+  public func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) {
     do {
       try container.resolveDependenciesOf(self, tag: tag)
     }
@@ -143,15 +144,15 @@ extension NSObject {
   
   ///A string tag that will be used to resolve dependencies of this instance
   ///if it implements `StoryboardInstantiatable` protocol.
-  @IBInspectable private(set) public var dipTag: String? {
+  private(set) public var dipTag: String? {
     get {
       return objc_getAssociatedObject(self, DipTagAssociatedObjectKey) as? String
     }
     set {
       objc_setAssociatedObject(self, DipTagAssociatedObjectKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
       
+      let tag = dipTag.map(DependencyContainer.Tag.String)
       if let
-        tag = newValue.map(DependencyContainer.Tag.String),
         container = DependencyContainer.uiContainer,
         instantiatable = self as? StoryboardInstantiatable {
           instantiatable.didInstantiateFromStoryboard(container, tag: tag)
