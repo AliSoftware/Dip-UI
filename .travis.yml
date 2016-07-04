@@ -16,3 +16,6 @@ script:
 - set -o pipefail && xcodebuild test -project DipUI/DipUI.xcodeproj -scheme DipUI-tvOS -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=latest' ONLY_ACTIVE_ARCH=NO | xcpretty -c
 - pod lib lint --quick
 - carthage build --no-skip-current
+
+notifications:
+email: false
