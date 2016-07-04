@@ -49,7 +49,7 @@ To injecte dependencies in this view controller when it is instantiated from sto
 
 1. Register the dependencies in the `DependencyContainer`, as well as `MyViewController`:
 
- ```swift
+```swift
 import Dip
 
 @UIApplicationMain
@@ -71,17 +71,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.service 		= try container.resolve() as MyViewControllerService
       }
       
-    DependencyContainer.uiContainer = container
+      DependencyContainer.uiContainers = [container]
   }
 }
 ```
+ 
 > Note: All the depdencies are registered as implementations of abstractions (protocols). But `MyViewController` is registered as concrete type. But you can also make your view controller conform to some protocols and register them as implementations of these protocols.
+ In this case you can use `Nil` attribute type instead of `String`.
 
-2. Set the container as one that will be used to inject dependencies in objects created by storyboards. You do it by setting static `uiContainer` property of `DependencyContainer ` class: `DependencyContainer.uiContainer = container`
+2. Set the container as one that will be used to inject dependencies in objects created by storyboards. You do it by setting static `uiContainers` property of `DependencyContainer ` class: `DependencyContainer.uiContainers = [container]`
 
 3. Make your view controller class conform to `StoryboardInstantiatable` protocol:
 
- ```swift
+```swift
 extension MyViewController: StoryboardInstantiatable { }
 ```
 
@@ -104,8 +106,8 @@ Now when view controller will be loaded from a storyboard Dip-UI will intercept 
  container.register { MyViewController() as MyScene }
  
  extension MyViewController: StoryboardInstantiatable {
-   func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag) {
-     try! container.resolveDependenciesOf(self as MyScene, tag: tag)
+   func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) throws {
+     try container.resolveDependenciesOf(self as MyScene, tag: tag)
    }
  }
  ```
