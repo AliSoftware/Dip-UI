@@ -42,7 +42,8 @@ import XCTest
   
 #endif
 
-class DipViewController: ViewController, StoryboardInstantiatable { }
+class DipViewController: ViewController, StoryboardInstantiatable {}
+class NilTagViewController: ViewController, StoryboardInstantiatable {}
 
 class DipUITests: XCTestCase {
   
@@ -76,8 +77,8 @@ class DipUITests: XCTestCase {
     DependencyContainer.uiContainer = container
     storyboard.instantiateViewControllerWithIdentifier("ViewController")
   }
-  
-  func testThatItResolvesIfContainerAndTagAreSet() {
+
+  func testThatItResolvesIfContainerAndStringTagAreSet() {
     var resolved = false
     let container = DependencyContainer()
     container.register(tag: "vc") { DipViewController() }
@@ -87,9 +88,45 @@ class DipUITests: XCTestCase {
     
     DependencyContainer.uiContainer = container
     storyboard.instantiateViewControllerWithIdentifier("DipViewController")
-    XCTAssertTrue(resolved, "Should resolve when container is set.")
+    XCTAssertTrue(resolved, "Should resolve when container and tag are set.")
+  }
+
+  func testThatItResolvesIfContainerAndNilTagAreSet() {
+    var resolved = false
+    let container = DependencyContainer()
+    container.register() { NilTagViewController() }
+      .resolveDependencies { _, _ in
+        resolved = true
+    }
+    
+    DependencyContainer.uiContainer = container
+    storyboard.instantiateViewControllerWithIdentifier("NilTagViewController")
+    XCTAssertTrue(resolved, "Should resolve when container and nil tag are set.")
+  }
+
+  func testThatItDoesNotResolveIfTagDoesNotMatch() {
+    let container = DependencyContainer()
+    container.register(tag: "wrong tag") { DipViewController() }
+      .resolveDependencies { _, _ in
+        XCTFail("Should not resolve when container is not set.")
+    }
+    
+    DependencyContainer.uiContainer = container
+    storyboard.instantiateViewControllerWithIdentifier("DipViewController")
   }
   
+  func testThatItResolvesWithDefinitionWithNoTag() {
+    var resolved = false
+    let container = DependencyContainer()
+    container.register() { DipViewController() }
+      .resolveDependencies { _, _ in
+        resolved = true
+    }
+    
+    DependencyContainer.uiContainer = container
+    storyboard.instantiateViewControllerWithIdentifier("DipViewController")
+    XCTAssertTrue(resolved, "Should fallback to definition with no tag.")
+  }
 }
 
 protocol SomeService: class {

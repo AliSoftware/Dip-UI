@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <scenes>
         <!--Dip View Controller-->
@@ -19,6 +19,22 @@
                 <customObject id="wjM-mL-nmG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="311" y="339"/>
+        </scene>
+        <!--Nil Tag View Controller-->
+        <scene sceneID="OhX-tC-zpS">
+            <objects>
+                <viewController storyboardIdentifier="NilTagViewController" id="35S-Ec-qEA" customClass="NilTagViewController" customModule="DipUI_OSXTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="y58-K4-cDZ">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="nil" keyPath="dipTag"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <customObject id="pvf-jv-8Cj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="874" y="339"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Rwu-gt-fAa">
