@@ -74,7 +74,7 @@ class DipUITests: XCTestCase {
         XCTFail("Should not resolve when container is not set.")
     }
     
-    DependencyContainer.uiContainer = container
+    DependencyContainer.uiContainers = [container]
     storyboard.instantiateViewControllerWithIdentifier("ViewController")
   }
 
@@ -86,7 +86,7 @@ class DipUITests: XCTestCase {
         resolved = true
     }
     
-    DependencyContainer.uiContainer = container
+    DependencyContainer.uiContainers = [container]
     storyboard.instantiateViewControllerWithIdentifier("DipViewController")
     XCTAssertTrue(resolved, "Should resolve when container and tag are set.")
   }
@@ -99,7 +99,7 @@ class DipUITests: XCTestCase {
         resolved = true
     }
     
-    DependencyContainer.uiContainer = container
+    DependencyContainer.uiContainers = [container]
     storyboard.instantiateViewControllerWithIdentifier("NilTagViewController")
     XCTAssertTrue(resolved, "Should resolve when container and nil tag are set.")
   }
@@ -111,7 +111,7 @@ class DipUITests: XCTestCase {
         XCTFail("Should not resolve when container is not set.")
     }
     
-    DependencyContainer.uiContainer = container
+    DependencyContainer.uiContainers = [container]
     storyboard.instantiateViewControllerWithIdentifier("DipViewController")
   }
   
@@ -123,9 +123,24 @@ class DipUITests: XCTestCase {
         resolved = true
     }
     
-    DependencyContainer.uiContainer = container
+    DependencyContainer.uiContainers = [container]
     storyboard.instantiateViewControllerWithIdentifier("DipViewController")
     XCTAssertTrue(resolved, "Should fallback to definition with no tag.")
+  }
+  
+  func testThatItIteratesUIContainers() {
+    var resolved = false
+    let container1 = DependencyContainer()
+    let container2 = DependencyContainer()
+    container2.register(tag: "vc") { DipViewController() }
+      .resolveDependencies { container, _ in
+        XCTAssertTrue(container === container2)
+        resolved = true
+    }
+    
+    DependencyContainer.uiContainers = [container1, container2]
+    storyboard.instantiateViewControllerWithIdentifier("DipViewController")
+    XCTAssertTrue(resolved, "Should resolve using second container")
   }
 }
 
