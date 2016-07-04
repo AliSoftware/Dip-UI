@@ -49,7 +49,7 @@ To injecte dependencies in this view controller when it is instantiated from sto
 
 1. Register the dependencies in the `DependencyContainer`, as well as `MyViewController`:
 
-```swift
+ ```swift
 import Dip
 
 @UIApplicationMain
@@ -70,6 +70,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         container.presenter 	= try container.resolve() as MyViewControllerPresenter
         container.service 		= try container.resolve() as MyViewControllerService
       }
+      
+    DependencyContainer.uiContainer = container
   }
 }
 ```
@@ -79,9 +81,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 3. Make your view controller class conform to `StoryboardInstantiatable` protocol:
 
-```swift
+ ```swift
 extension MyViewController: StoryboardInstantiatable { }
 ```
+
+ > Tip: Do that in the Composition Root to avoid coupling your view controller's code with Dip.
 
 4. In a storyboard (or in a nib file) set _Dip Tag_ attribute on your view controller. This value will be used to lookup definition for view controller, so it should be the same value that you used to register view controller in the container.
 
