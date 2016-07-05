@@ -47,7 +47,7 @@ class MyViewController: UIViewController {
 
 To injecte dependencies in this view controller when it is instantiated from storyboard you need to follow next steps:
 
-1. Register the dependencies in the `DependencyContainer`, as well as `MyViewController`:
+- Register the dependencies in the `DependencyContainer`, as well as `MyViewController`:
 
 ```swift
 import Dip
@@ -76,12 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
  
-> Note: All the depdencies are registered as implementations of abstractions (protocols). But `MyViewController` is registered as concrete type. But you can also make your view controller conform to some protocols and register them as implementations of these protocols.
- In this case you can use `Nil` attribute type instead of `String`.
+> Note: All the depdencies are registered as implementations of abstractions (protocols). `MyViewController` is registered as concrete type. But you can also make your view controller conform to some protocols and register them as implementations of these protocols.
+ 
+- Set the container as one that will be used to inject dependencies in objects created by storyboards. You do it by setting static `uiContainers` property of `DependencyContainer ` class: 
 
-2. Set the container as one that will be used to inject dependencies in objects created by storyboards. You do it by setting static `uiContainers` property of `DependencyContainer ` class: `DependencyContainer.uiContainers = [container]`
+```swift
+DependencyContainer.uiContainers = [container]
+```
 
-3. Make your view controller class conform to `StoryboardInstantiatable` protocol:
+- Make your view controller class conform to `StoryboardInstantiatable` protocol:
 
 ```swift
 extension MyViewController: StoryboardInstantiatable { }
@@ -89,28 +92,26 @@ extension MyViewController: StoryboardInstantiatable { }
 
  > Tip: Do that in the Composition Root to avoid coupling your view controller's code with Dip.
 
-4. In a storyboard (or in a nib file) set _Dip Tag_ attribute on your view controller. This value will be used to lookup definition for view controller, so it should be the same value that you used to register view controller in the container.
+- In a storyboard (or in a nib file) set _Dip Tag_ attribute on your view controller. This value will be used to lookup definition for view controller, so it should be the same value that you used to register view controller in the container.
 
 ![img](adding-dip-tag-in-ib.png?raw=true)
 
-> Note: remember that `DependencyContainer` fallbacks to not-tagged definition if it does not find tagged definition, so you may register your view controller without tag, but you still need to set it in a storyboard.
-
+> Note: remember that `DependencyContainer` fallbacks to not-tagged definition if it does not find tagged definition, so you may register your view controller without tag, but you still need to set it in a storyboard. In this case you can use `Nil` attribute type instead of `String`.
 
 Now when view controller will be loaded from a storyboard Dip-UI will intercept the setter of `dipTag` property and will ask `DependencyContainer.uiContainer` to resolve its dependencies.
 
 ### StoryboardInstantiatable
 
- `StoryboardInstantiatable` protocol defines single method `didInstantiateFromStoryboard(_:tag:)` and provides its default implementation. In most cases you will not need to override it. But if you register your view controller as an impementation of some protocol instead of concrete type, or want to perform some pre/post actions, you will need to override it like this:
+`StoryboardInstantiatable` protocol defines single method `didInstantiateFromStoryboard(_:tag:)` and provides its default implementation. In most cases you will not need to override it. But if you register your view controller as an impementation of some protocol instead of concrete type, or want to perform some pre/post actions, you will need to override it like this:
  
- ```swift
- container.register { MyViewController() as MyScene }
- 
- extension MyViewController: StoryboardInstantiatable {
-   func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) throws {
-     try container.resolveDependenciesOf(self as MyScene, tag: tag)
-   }
- }
- ```
+```swift
+container.register { MyViewController() as MyScene }
+extension MyViewController: StoryboardInstantiatable {
+  func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) throws {
+    try container.resolveDependenciesOf(self as MyScene, tag: tag)
+  }
+}
+```
  
 
 ## License
