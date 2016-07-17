@@ -150,6 +150,7 @@ extension NSObject {
         
       for container in DependencyContainer.uiContainers {
         guard let _ = try? instantiatable.didInstantiateFromStoryboard(container, tag: tag) else { continue }
+        break
       }
     }
   }

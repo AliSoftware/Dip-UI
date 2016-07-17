@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.1
+
+* Fixed resolving instances using multiple UI containers.
+
 ## 0.2.0
 
 * Multiple UI containers
