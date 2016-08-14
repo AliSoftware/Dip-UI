@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     container.register { MyViewControllerServiceImp() as MyViewControllerService }
     
     container.register(tag: "myVC") { MyViewController() }
-      .resolveDependencies { container, controller in
+      .resolvingProperties { container, controller in
         container.logger 		= try container.resolve() as Logger
         container.tracker 		= try container.resolve() as Tracker
         container.router 		= try container.resolve() as Router
