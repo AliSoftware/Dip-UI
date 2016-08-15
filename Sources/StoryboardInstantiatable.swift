@@ -55,7 +55,7 @@ extension DependencyContainer {
    }
    
    container.register(tag: "vc") { ViewController() }
-     .resolveDependencies { container, controller in
+     .resolvingProperties { container, controller in
        controller.service = try container.resolve() as Service
        controller.service.delegate = controller
    }
@@ -67,7 +67,7 @@ extension DependencyContainer {
    container.register { ServiceImp() as Service }
    
    let controller = ...
-   container.resolveDependencies(controller, tag: "vc")
+   container.resolveDependenciesOf(controller, tag: "vc")
    //controller.service?.delegate === controller
    ```
    
@@ -75,7 +75,7 @@ extension DependencyContainer {
    
    */
   public func resolveDependenciesOf<T>(instance: T, tag: Tag? = nil) throws {
-    try resolve(tag: tag) { (factory: () throws -> T) in instance }
+    resolve(tag: tag) { (factory: () throws -> T) in instance }
   }
   
 }
