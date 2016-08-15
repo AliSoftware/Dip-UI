@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.2
+
+* Fixed build warning when calling non-throwing `resolve` with `try`.
+
 ## 0.2.1
 
 * Fixed resolving instances using multiple UI containers.
