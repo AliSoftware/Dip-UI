@@ -7,139 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		092624851C5E8BF600A31D1A /* UIStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 092624801C5E8ACD00A31D1A /* UIStoryboard.storyboard */; };
-		092624861C5E8BF800A31D1A /* UIStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 092624801C5E8ACD00A31D1A /* UIStoryboard.storyboard */; };
-		092624871C5E8BFD00A31D1A /* NSStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 092624831C5E8AFE00A31D1A /* NSStoryboard.storyboard */; };
-		092624891C5E8DA800A31D1A /* Dip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 09B0367F1C5E8944001EA5B7 /* Dip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0926248C1C5E90A800A31D1A /* Dip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 09B0367D1C5E893C001EA5B7 /* Dip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0926248E1C5E90B300A31D1A /* Dip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 09B036811C5E894A001EA5B7 /* Dip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		09B036121C5E8028001EA5B7 /* DipUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 09B036111C5E8028001EA5B7 /* DipUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		09B036191C5E8029001EA5B7 /* DipUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0360E1C5E8028001EA5B7 /* DipUI.framework */; };
 		09B0361E1C5E8029001EA5B7 /* DipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B0361D1C5E8029001EA5B7 /* DipUITests.swift */; };
-		09B036291C5E812D001EA5B7 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B036281C5E812D001EA5B7 /* StoryboardInstantiatable.swift */; };
-		09B036481C5E8358001EA5B7 /* DipUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0363E1C5E8358001EA5B7 /* DipUI.framework */; };
-		09B036641C5E836B001EA5B7 /* DipUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0365A1C5E836B001EA5B7 /* DipUI.framework */; };
 		09B036711C5E864C001EA5B7 /* DipUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 09B036111C5E8028001EA5B7 /* DipUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		09B036721C5E864E001EA5B7 /* DipUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 09B036111C5E8028001EA5B7 /* DipUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		09B036751C5E868B001EA5B7 /* DipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B0361D1C5E8029001EA5B7 /* DipUITests.swift */; };
-		09B036761C5E868D001EA5B7 /* DipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B0361D1C5E8029001EA5B7 /* DipUITests.swift */; };
 		09B036771C5E86BE001EA5B7 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B036281C5E812D001EA5B7 /* StoryboardInstantiatable.swift */; };
-		09B036781C5E86C0001EA5B7 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B036281C5E812D001EA5B7 /* StoryboardInstantiatable.swift */; };
-		09B0367E1C5E893C001EA5B7 /* Dip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0367D1C5E893C001EA5B7 /* Dip.framework */; };
-		09B036801C5E8944001EA5B7 /* Dip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0367F1C5E8944001EA5B7 /* Dip.framework */; };
-		09B036821C5E894A001EA5B7 /* Dip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B036811C5E894A001EA5B7 /* Dip.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		09B0361A1C5E8029001EA5B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 09B036051C5E8028001EA5B7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 09B0360D1C5E8028001EA5B7;
-			remoteInfo = DipUI;
-		};
-		09B036491C5E8358001EA5B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 09B036051C5E8028001EA5B7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 09B0363D1C5E8358001EA5B7;
-			remoteInfo = "DipUI-tvOS";
-		};
-		09B036651C5E836B001EA5B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 09B036051C5E8028001EA5B7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 09B036591C5E836B001EA5B7;
-			remoteInfo = "DipUI-OSX";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		092624881C5E8D9C00A31D1A /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				092624891C5E8DA800A31D1A /* Dip.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0926248B1C5E909A00A31D1A /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0926248C1C5E90A800A31D1A /* Dip.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0926248D1C5E90AC00A31D1A /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				0926248E1C5E90B300A31D1A /* Dip.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		092624801C5E8ACD00A31D1A /* UIStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UIStoryboard.storyboard; sourceTree = "<group>"; };
 		092624831C5E8AFE00A31D1A /* NSStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NSStoryboard.storyboard; sourceTree = "<group>"; };
+		092BACA31D63AFA50017CE47 /* TVStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TVStoryboard.storyboard; sourceTree = "<group>"; };
+		092BACA61D63B0810017CE47 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = ../Carthage/Build/Mac/Dip.framework; sourceTree = "<group>"; };
+		092BACA81D63B0F00017CE47 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = ../Carthage/Build/iOS/Dip.framework; sourceTree = "<group>"; };
 		0969D1B91C60099600A2142B /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		0969D1BA1C60099600A2142B /* Dip-UI.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Dip-UI.podspec"; path = "../Dip-UI.podspec"; sourceTree = "<group>"; };
 		0969D1BB1C60099600A2142B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		0969D1BC1C60099600A2142B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		09B0360E1C5E8028001EA5B7 /* DipUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DipUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B036111C5E8028001EA5B7 /* DipUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DipUI.h; sourceTree = "<group>"; };
 		09B036131C5E8028001EA5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09B036181C5E8029001EA5B7 /* DipUI-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DipUI-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09B036181C5E8029001EA5B7 /* DipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B0361D1C5E8029001EA5B7 /* DipUITests.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = DipUITests.swift; sourceTree = "<group>"; tabWidth = 2; };
 		09B0361F1C5E8029001EA5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09B036281C5E812D001EA5B7 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryboardInstantiatable.swift; path = ../../Sources/StoryboardInstantiatable.swift; sourceTree = "<group>"; };
-		09B0363E1C5E8358001EA5B7 /* DipUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DipUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09B036471C5E8358001EA5B7 /* DipUI-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DipUI-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B0365A1C5E836B001EA5B7 /* DipUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DipUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09B036631C5E836B001EA5B7 /* DipUI-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DipUI-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		09B0367D1C5E893C001EA5B7 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = ../Carthage/Build/Mac/Dip.framework; sourceTree = "<group>"; };
-		09B0367F1C5E8944001EA5B7 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = ../Carthage/Build/iOS/Dip.framework; sourceTree = "<group>"; };
-		09B036811C5E894A001EA5B7 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = ../Carthage/Build/tvOS/Dip.framework; sourceTree = "<group>"; };
+		09CDAB9D1D63B12F0040428C /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = ../Carthage/Build/tvOS/Dip.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		09B0360A1C5E8028001EA5B7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				09B036801C5E8944001EA5B7 /* Dip.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		09B036151C5E8029001EA5B7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09B036191C5E8029001EA5B7 /* DipUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		09B0363A1C5E8358001EA5B7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				09B036821C5E894A001EA5B7 /* Dip.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		09B036441C5E8358001EA5B7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				09B036481C5E8358001EA5B7 /* DipUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,15 +44,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09B0367E1C5E893C001EA5B7 /* Dip.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		09B036601C5E836B001EA5B7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				09B036641C5E836B001EA5B7 /* DipUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,9 +53,9 @@
 		0926247F1C5E8A7F00A31D1A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				09B036811C5E894A001EA5B7 /* Dip.framework */,
-				09B0367F1C5E8944001EA5B7 /* Dip.framework */,
-				09B0367D1C5E893C001EA5B7 /* Dip.framework */,
+				09CDAB9D1D63B12F0040428C /* Dip.framework */,
+				092BACA81D63B0F00017CE47 /* Dip.framework */,
+				092BACA61D63B0810017CE47 /* Dip.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -199,12 +87,8 @@
 		09B0360F1C5E8028001EA5B7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				09B0360E1C5E8028001EA5B7 /* DipUI.framework */,
-				09B036181C5E8029001EA5B7 /* DipUI-iOSTests.xctest */,
-				09B0363E1C5E8358001EA5B7 /* DipUI.framework */,
-				09B036471C5E8358001EA5B7 /* DipUI-tvOSTests.xctest */,
+				09B036181C5E8029001EA5B7 /* DipUITests.xctest */,
 				09B0365A1C5E836B001EA5B7 /* DipUI.framework */,
-				09B036631C5E836B001EA5B7 /* DipUI-OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,6 +108,7 @@
 			children = (
 				09B0361D1C5E8029001EA5B7 /* DipUITests.swift */,
 				092624801C5E8ACD00A31D1A /* UIStoryboard.storyboard */,
+				092BACA31D63AFA50017CE47 /* TVStoryboard.storyboard */,
 				092624831C5E8AFE00A31D1A /* NSStoryboard.storyboard */,
 				09B0361F1C5E8029001EA5B7 /* Info.plist */,
 			);
@@ -233,22 +118,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		09B0360B1C5E8028001EA5B7 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				09B036121C5E8028001EA5B7 /* DipUI.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		09B0363B1C5E8358001EA5B7 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				09B036721C5E864E001EA5B7 /* DipUI.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		09B036571C5E836B001EA5B7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,83 +129,28 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		09B0360D1C5E8028001EA5B7 /* DipUI-iOS */ = {
+		09B036171C5E8029001EA5B7 /* DipUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09B036221C5E8029001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-iOS" */;
-			buildPhases = (
-				09B036091C5E8028001EA5B7 /* Sources */,
-				09B0360A1C5E8028001EA5B7 /* Frameworks */,
-				09B0360B1C5E8028001EA5B7 /* Headers */,
-				09B0360C1C5E8028001EA5B7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "DipUI-iOS";
-			productName = DipUI;
-			productReference = 09B0360E1C5E8028001EA5B7 /* DipUI.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		09B036171C5E8029001EA5B7 /* DipUI-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 09B036251C5E8029001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-iOSTests" */;
+			buildConfigurationList = 09B036251C5E8029001EA5B7 /* Build configuration list for PBXNativeTarget "DipUITests" */;
 			buildPhases = (
 				09B036141C5E8029001EA5B7 /* Sources */,
 				09B036151C5E8029001EA5B7 /* Frameworks */,
+				0966BAEF1D651EB7009C6CC3 /* ShellScript */,
 				09B036161C5E8029001EA5B7 /* Resources */,
-				092624881C5E8D9C00A31D1A /* CopyFiles */,
+				0966BAF01D652F19009C6CC3 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				09B0361B1C5E8029001EA5B7 /* PBXTargetDependency */,
 			);
-			name = "DipUI-iOSTests";
+			name = DipUITests;
 			productName = DipUITests;
-			productReference = 09B036181C5E8029001EA5B7 /* DipUI-iOSTests.xctest */;
+			productReference = 09B036181C5E8029001EA5B7 /* DipUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		09B0363D1C5E8358001EA5B7 /* DipUI-tvOS */ = {
+		09B036591C5E836B001EA5B7 /* DipUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09B0364F1C5E8358001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-tvOS" */;
-			buildPhases = (
-				09B036391C5E8358001EA5B7 /* Sources */,
-				09B0363A1C5E8358001EA5B7 /* Frameworks */,
-				09B0363B1C5E8358001EA5B7 /* Headers */,
-				09B0363C1C5E8358001EA5B7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "DipUI-tvOS";
-			productName = "DipUI-tvOS";
-			productReference = 09B0363E1C5E8358001EA5B7 /* DipUI.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		09B036461C5E8358001EA5B7 /* DipUI-tvOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 09B036521C5E8358001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-tvOSTests" */;
-			buildPhases = (
-				09B036431C5E8358001EA5B7 /* Sources */,
-				09B036441C5E8358001EA5B7 /* Frameworks */,
-				09B036451C5E8358001EA5B7 /* Resources */,
-				0926248D1C5E90AC00A31D1A /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				09B0364A1C5E8358001EA5B7 /* PBXTargetDependency */,
-			);
-			name = "DipUI-tvOSTests";
-			productName = "DipUI-tvOSTests";
-			productReference = 09B036471C5E8358001EA5B7 /* DipUI-tvOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		09B036591C5E836B001EA5B7 /* DipUI-OSX */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 09B0366B1C5E836B001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-OSX" */;
+			buildConfigurationList = 09B0366B1C5E836B001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI" */;
 			buildPhases = (
 				09B036551C5E836B001EA5B7 /* Sources */,
 				09B036561C5E836B001EA5B7 /* Frameworks */,
@@ -347,29 +161,10 @@
 			);
 			dependencies = (
 			);
-			name = "DipUI-OSX";
+			name = DipUI;
 			productName = "DipUI-OSX";
 			productReference = 09B0365A1C5E836B001EA5B7 /* DipUI.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		09B036621C5E836B001EA5B7 /* DipUI-OSXTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 09B0366E1C5E836B001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-OSXTests" */;
-			buildPhases = (
-				09B0365F1C5E836B001EA5B7 /* Sources */,
-				09B036601C5E836B001EA5B7 /* Frameworks */,
-				09B036611C5E836B001EA5B7 /* Resources */,
-				0926248B1C5E909A00A31D1A /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				09B036661C5E836B001EA5B7 /* PBXTargetDependency */,
-			);
-			name = "DipUI-OSXTests";
-			productName = "DipUI-OSXTests";
-			productReference = 09B036631C5E836B001EA5B7 /* DipUI-OSXTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -378,28 +173,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
-					09B0360D1C5E8028001EA5B7 = {
-						CreatedOnToolsVersion = 7.2;
-					};
 					09B036171C5E8029001EA5B7 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 87BXKFRW6K;
 					};
-					09B0363D1C5E8358001EA5B7 = {
-						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 87BXKFRW6K;
-					};
-					09B036461C5E8358001EA5B7 = {
-						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 87BXKFRW6K;
-					};
 					09B036591C5E836B001EA5B7 = {
-						CreatedOnToolsVersion = 7.2;
-					};
-					09B036621C5E836B001EA5B7 = {
 						CreatedOnToolsVersion = 7.2;
 					};
 				};
@@ -416,44 +197,17 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				09B036591C5E836B001EA5B7 /* DipUI-OSX */,
-				09B036621C5E836B001EA5B7 /* DipUI-OSXTests */,
-				09B0360D1C5E8028001EA5B7 /* DipUI-iOS */,
-				09B036171C5E8029001EA5B7 /* DipUI-iOSTests */,
-				09B0363D1C5E8358001EA5B7 /* DipUI-tvOS */,
-				09B036461C5E8358001EA5B7 /* DipUI-tvOSTests */,
+				09B036591C5E836B001EA5B7 /* DipUI */,
+				09B036171C5E8029001EA5B7 /* DipUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		09B0360C1C5E8028001EA5B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		09B036161C5E8029001EA5B7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				092624851C5E8BF600A31D1A /* UIStoryboard.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		09B0363C1C5E8358001EA5B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		09B036451C5E8358001EA5B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				092624861C5E8BF800A31D1A /* UIStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,46 +218,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		09B036611C5E836B001EA5B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				092624871C5E8BFD00A31D1A /* NSStoryboard.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXSourcesBuildPhase section */
-		09B036091C5E8028001EA5B7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+/* Begin PBXShellScriptBuildPhase section */
+		0966BAEF1D651EB7009C6CC3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09B036291C5E812D001EA5B7 /* StoryboardInstantiatable.swift in Sources */,
+			);
+			inputPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ibtool --compilation-directory \"${TARGET_TEMP_DIR}\" \"${SRCROOT}/DipUITests/${STORYBOARD_NAME_PREFIX}Storyboard.storyboard\"\nibtool --link \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" \"${TARGET_TEMP_DIR}/${STORYBOARD_NAME_PREFIX}Storyboard.storyboardc\"\n";
 		};
+		0966BAF01D652F19009C6CC3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "for path in $FRAMEWORK_SEARCH_PATHS\ndo\n    if [ -d \"${path}/Dip.framework\" ] && [[ $path == *\"Carthage\"* ]]; then\n        export SCRIPT_INPUT_FILE_COUNT=1\n        export SCRIPT_INPUT_FILE_0=\"${path}/Dip.framework\"\n        /usr/local/bin/carthage copy-frameworks\n        break\n    fi\ndone\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		09B036141C5E8029001EA5B7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				09B0361E1C5E8029001EA5B7 /* DipUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		09B036391C5E8358001EA5B7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				09B036781C5E86C0001EA5B7 /* StoryboardInstantiatable.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		09B036431C5E8358001EA5B7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				09B036761C5E868D001EA5B7 /* DipUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,33 +266,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		09B0365F1C5E836B001EA5B7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				09B036751C5E868B001EA5B7 /* DipUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		09B0361B1C5E8029001EA5B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 09B0360D1C5E8028001EA5B7 /* DipUI-iOS */;
-			targetProxy = 09B0361A1C5E8029001EA5B7 /* PBXContainerItemProxy */;
-		};
-		09B0364A1C5E8358001EA5B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 09B0363D1C5E8358001EA5B7 /* DipUI-tvOS */;
-			targetProxy = 09B036491C5E8358001EA5B7 /* PBXContainerItemProxy */;
-		};
-		09B036661C5E836B001EA5B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 09B036591C5E836B001EA5B7 /* DipUI-OSX */;
-			targetProxy = 09B036651C5E836B001EA5B7 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		09B036201C5E8029001EA5B7 /* Debug */ = {
@@ -567,6 +292,12 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/Mac";
+				"FRAMEWORK_SEARCH_PATHS[sdk=appletvos*]" = "$(SRCROOT)/../Carthage/Build/tvOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=appletvsimulator*]" = "$(SRCROOT)/../Carthage/Build/tvOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/../Carthage/Build/iOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/../Carthage/Build/iOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=macosx*]" = "$(SRCROOT)/../Carthage/Build/Mac";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -582,12 +313,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -616,6 +347,12 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/Mac";
+				"FRAMEWORK_SEARCH_PATHS[sdk=appletvos*]" = "$(SRCROOT)/../Carthage/Build/tvOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=appletvsimulator*]" = "$(SRCROOT)/../Carthage/Build/tvOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/../Carthage/Build/iOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/../Carthage/Build/iOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=macosx*]" = "$(SRCROOT)/../Carthage/Build/Mac";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -625,140 +362,45 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		09B036231C5E8029001EA5B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
-				INFOPLIST_FILE = DipUI/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-iOS";
-				PRODUCT_NAME = DipUI;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		09B036241C5E8029001EA5B7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
-				INFOPLIST_FILE = DipUI/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-iOS";
-				PRODUCT_NAME = DipUI;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		09B036261C5E8029001EA5B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
+				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DipUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.DipUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STORYBOARD_NAME_PREFIX = NS;
+				"STORYBOARD_NAME_PREFIX[sdk=appletvos*]" = TV;
+				"STORYBOARD_NAME_PREFIX[sdk=appletvsimulator*]" = TV;
+				"STORYBOARD_NAME_PREFIX[sdk=iphoneos*]" = UI;
+				"STORYBOARD_NAME_PREFIX[sdk=iphonesimulator*]" = UI;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
 		09B036271C5E8029001EA5B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
+				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DipUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.DipUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		09B036501C5E8358001EA5B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/tvOS";
-				INFOPLIST_FILE = DipUI/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-tvOS";
-				PRODUCT_NAME = DipUI;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Debug;
-		};
-		09B036511C5E8358001EA5B7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/tvOS";
-				INFOPLIST_FILE = DipUI/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-tvOS";
-				PRODUCT_NAME = DipUI;
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Release;
-		};
-		09B036531C5E8358001EA5B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/tvOS";
-				INFOPLIST_FILE = DipUI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TVOS_DEPLOYMENT_TARGET = 9.1;
-			};
-			name = Debug;
-		};
-		09B036541C5E8358001EA5B7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/tvOS";
-				INFOPLIST_FILE = DipUI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TVOS_DEPLOYMENT_TARGET = 9.1;
+				STORYBOARD_NAME_PREFIX = "";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};
@@ -771,15 +413,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/Mac";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = DipUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.DipUI;
 				PRODUCT_NAME = DipUI;
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
@@ -792,45 +433,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/Mac";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = DipUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.DipUI;
 				PRODUCT_NAME = DipUI;
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		09B0366F1C5E836B001EA5B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/Mac";
-				INFOPLIST_FILE = DipUI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-OSXTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		09B036701C5E836B001EA5B7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/Mac";
-				INFOPLIST_FILE = DipUI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.alisoftware.DipUI-OSXTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};
@@ -846,16 +456,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		09B036221C5E8029001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				09B036231C5E8029001EA5B7 /* Debug */,
-				09B036241C5E8029001EA5B7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		09B036251C5E8029001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-iOSTests" */ = {
+		09B036251C5E8029001EA5B7 /* Build configuration list for PBXNativeTarget "DipUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09B036261C5E8029001EA5B7 /* Debug */,
@@ -864,38 +465,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		09B0364F1C5E8358001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-tvOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				09B036501C5E8358001EA5B7 /* Debug */,
-				09B036511C5E8358001EA5B7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		09B036521C5E8358001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-tvOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				09B036531C5E8358001EA5B7 /* Debug */,
-				09B036541C5E8358001EA5B7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		09B0366B1C5E836B001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-OSX" */ = {
+		09B0366B1C5E836B001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09B0366C1C5E836B001EA5B7 /* Debug */,
 				09B0366D1C5E836B001EA5B7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		09B0366E1C5E836B001EA5B7 /* Build configuration list for PBXNativeTarget "DipUI-OSXTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				09B0366F1C5E836B001EA5B7 /* Debug */,
-				09B036701C5E836B001EA5B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

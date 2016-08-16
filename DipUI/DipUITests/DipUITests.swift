@@ -42,6 +42,15 @@ import XCTest
   
 #endif
 
+#if os(iOS)
+  let storyboardName = "UIStoryboard"
+#elseif os(tvOS)
+  let storyboardName = "TVStoryboard"
+#else
+  let storyboardName = "NSStoryboard"
+#endif
+
+
 class DipViewController: ViewController, StoryboardInstantiatable {}
 class NilTagViewController: ViewController, StoryboardInstantiatable {}
 
@@ -49,7 +58,7 @@ class DipUITests: XCTestCase {
   
   let storyboard: Storyboard = {
     let bundle = NSBundle(forClass: DipUITests.self)
-    return Storyboard(name: String(Storyboard.self), bundle: bundle)
+    return Storyboard(name: storyboardName, bundle: bundle)
   }()
   
   func testThatViewControllerHasDipTagProperty() {

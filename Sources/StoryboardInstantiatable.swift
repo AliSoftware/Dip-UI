@@ -147,6 +147,7 @@ extension NSObject {
     }
     set {
       objc_setAssociatedObject(self, DipTagAssociatedObjectKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+      print(self.dynamicType)
       guard let instantiatable = self as? StoryboardInstantiatable else { return }
       
       let tag = dipTag.map(DependencyContainer.Tag.String)
