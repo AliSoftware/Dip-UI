@@ -104,7 +104,7 @@ class DipUITests: XCTestCase {
     XCTAssertTrue(resolved, "Should resolve when container and nil tag are set.")
   }
 
-  func _testThatItDoesNotResolveIfTagDoesNotMatch() {
+  func testThatItDoesNotResolveIfTagDoesNotMatch() {
     let container = DependencyContainer()
     container.register(tag: "wrong tag") { DipViewController() }
       .resolvingProperties { _, _ in
@@ -128,7 +128,7 @@ class DipUITests: XCTestCase {
     XCTAssertTrue(resolved, "Should fallback to definition with no tag.")
   }
   
-  func _testThatItIteratesUIContainers() {
+  func testThatItIteratesUIContainers() {
     var resolved = false
     let container1 = DependencyContainer()
     let container2 = DependencyContainer()

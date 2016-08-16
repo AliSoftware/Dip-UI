@@ -75,7 +75,10 @@ extension DependencyContainer {
    
    */
   public func resolveDependenciesOf<T>(instance: T, tag: Tag? = nil) throws {
-    resolve(tag: tag) { (factory: () throws -> T) in instance }
+    try resolve(tag: tag) { (_: () throws -> T) in
+      //Fixes bug with rethrows https://bugs.swift.org/browse/SR-680
+      try ({ instance } as () throws -> T)()
+    }
   }
   
 }
