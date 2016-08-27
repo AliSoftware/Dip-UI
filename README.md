@@ -1,4 +1,4 @@
-[![CI Status](http://img.shields.io/travis/AliSoftware/Dip-UI.svg??branch=develop)](https://travis-ci.org/AliSoftware/Dip-UI)
+[![CI Status](http://img.shields.io/travis/AliSoftware/Dip-UI.svg?branch=develop)](https://travis-ci.org/AliSoftware/Dip-UI)
 [![Version](https://img.shields.io/cocoapods/v/Dip-UI.svg?style=flat)](http://cocoapods.org/pods/Dip-UI)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/Dip-UI.svg?style=flat)](http://cocoapods.org/pods/Dip-UI)
