@@ -298,6 +298,8 @@
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/../Carthage/Build/iOS";
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/../Carthage/Build/iOS";
 				"FRAMEWORK_SEARCH_PATHS[sdk=macosx*]" = "$(SRCROOT)/../Carthage/Build/Mac";
+				"FRAMEWORK_SEARCH_PATHS[sdk=watchos*]" = "$(SRCROOT)/../Carthage/Build/watchOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=watchsimulator*]" = "$(SRCROOT)/../Carthage/Build/watchOS";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -316,11 +318,13 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Debug;
 		};
@@ -353,6 +357,8 @@
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/../Carthage/Build/iOS";
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/../Carthage/Build/iOS";
 				"FRAMEWORK_SEARCH_PATHS[sdk=macosx*]" = "$(SRCROOT)/../Carthage/Build/Mac";
+				"FRAMEWORK_SEARCH_PATHS[sdk=watchos*]" = "$(SRCROOT)/../Carthage/Build/watchOS";
+				"FRAMEWORK_SEARCH_PATHS[sdk=watchsimulator*]" = "$(SRCROOT)/../Carthage/Build/watchOS";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -364,11 +370,13 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;
 		};
@@ -386,6 +394,7 @@
 				"STORYBOARD_NAME_PREFIX[sdk=appletvsimulator*]" = TV;
 				"STORYBOARD_NAME_PREFIX[sdk=iphoneos*]" = UI;
 				"STORYBOARD_NAME_PREFIX[sdk=iphonesimulator*]" = UI;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
@@ -400,6 +409,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.DipUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STORYBOARD_NAME_PREFIX = "";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator";
 				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
@@ -420,7 +430,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.DipUI;
 				PRODUCT_NAME = DipUI;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
@@ -440,7 +449,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.DipUI;
 				PRODUCT_NAME = DipUI;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};
