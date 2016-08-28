@@ -1,2 +1,2 @@
-github "AliSoftware/Dip" ~> 4.1.0
+github "AliSoftware/Dip" "develop"
 
