@@ -22,13 +22,19 @@
 // THE SOFTWARE.
 //
 
+import Dip
+
+extension DependencyContainer {
+  ///Containers that will be used to resolve dependencies of instances, created by stroyboards.
+  static public var uiContainers: [DependencyContainer] = []
+}
+
+#if !os(watchOS)
 #if os(iOS) || os(tvOS)
   import UIKit
 #else
   import AppKit
 #endif
-
-import Dip
 
 extension DependencyContainer {
 
@@ -130,13 +136,8 @@ extension StoryboardInstantiatable {
   }
 }
 
-extension DependencyContainer {
-  ///Containers that will be used to resolve dependencies of instances, created by stroyboards.
-  static public var uiContainers: [DependencyContainer] = []
-}
-
 let DipTagAssociatedObjectKey = UnsafeMutablePointer<Int8>.alloc(1)
-
+  
 extension NSObject {
   
   ///A string tag that will be used to resolve dependencies of this instance
@@ -150,7 +151,7 @@ extension NSObject {
       guard let instantiatable = self as? StoryboardInstantiatable else { return }
       
       let tag = dipTag.map(DependencyContainer.Tag.String)
-        
+      
       for container in DependencyContainer.uiContainers {
         guard let _ = try? instantiatable.didInstantiateFromStoryboard(container, tag: tag) else { continue }
         break
@@ -159,4 +160,57 @@ extension NSObject {
   }
   
 }
+
+#else
+import WatchKit
+  
+extension DependencyContainer {
+  func resolveDependenciesOf(instance: Any) throws {
+    try resolve() { (_: () throws -> Any) in
+      //Fixes bug with rethrows https://bugs.swift.org/browse/SR-680
+      try ({ instance } as () throws -> Any)()
+    }
+  }
+}
+  
+extension WKInterfaceController {
+  public override class func initialize() {
+    struct Static {
+      static var token: dispatch_once_t = 0
+    }
+    
+    // make sure this isn't a subclass
+    guard self == WKInterfaceController.self else { return }
+    
+    dispatch_once(&Static.token) {
+      let originalSelector = #selector(WKInterfaceController.awakeWithContext(_:))
+      let swizzledSelector = #selector(WKInterfaceController.dip_awakeWithContext(_:))
+      
+      let originalMethod = class_getInstanceMethod(self, originalSelector)
+      let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+      
+      let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+      
+      if didAddMethod {
+        class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+      } else {
+        method_exchangeImplementations(originalMethod, swizzledMethod)
+      }
+    }
+  }
+  
+  // MARK: - Method Swizzling
+  
+  func dip_awakeWithContext(context: AnyObject?) {
+    for container in DependencyContainer.uiContainers {
+      guard let _ = try? container.resolveDependenciesOf(self) else { continue }
+      break
+    }
+    self.dip_awakeWithContext(context)
+  }
+}
+
+#endif
+
+
 

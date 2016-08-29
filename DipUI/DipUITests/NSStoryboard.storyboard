@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--Dip View Controller-->
         <scene sceneID="adI-oe-5KL">
             <objects>
-                <viewController storyboardIdentifier="DipViewController" id="fzZ-tH-vfC" customClass="DipViewController" customModule="DipUI_OSXTests" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DipViewController" id="fzZ-tH-vfC" customClass="DipViewController" customModule="DipUITests" sceneMemberID="viewController">
                     <view key="view" id="vso-jO-9Ex">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,7 +23,7 @@
         <!--Nil Tag View Controller-->
         <scene sceneID="OhX-tC-zpS">
             <objects>
-                <viewController storyboardIdentifier="NilTagViewController" id="35S-Ec-qEA" customClass="NilTagViewController" customModule="DipUI_OSXTests" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NilTagViewController" id="35S-Ec-qEA" customClass="NilTagViewController" customModule="DipUITests" sceneMemberID="viewController">
                     <view key="view" id="y58-K4-cDZ">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
