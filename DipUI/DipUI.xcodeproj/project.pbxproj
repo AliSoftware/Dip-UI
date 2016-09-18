@@ -10,14 +10,13 @@
 		09B0361E1C5E8029001EA5B7 /* DipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B0361D1C5E8029001EA5B7 /* DipUITests.swift */; };
 		09B036711C5E864C001EA5B7 /* DipUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 09B036111C5E8028001EA5B7 /* DipUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		09B036771C5E86BE001EA5B7 /* StoryboardInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B036281C5E812D001EA5B7 /* StoryboardInstantiatable.swift */; };
+		09D387641D8E97E600483D0D /* DipUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0365A1C5E836B001EA5B7 /* DipUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		092624801C5E8ACD00A31D1A /* UIStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UIStoryboard.storyboard; sourceTree = "<group>"; };
 		092624831C5E8AFE00A31D1A /* NSStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NSStoryboard.storyboard; sourceTree = "<group>"; };
 		092BACA31D63AFA50017CE47 /* TVStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TVStoryboard.storyboard; sourceTree = "<group>"; };
-		092BACA61D63B0810017CE47 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = ../Carthage/Build/Mac/Dip.framework; sourceTree = "<group>"; };
-		092BACA81D63B0F00017CE47 /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = ../Carthage/Build/iOS/Dip.framework; sourceTree = "<group>"; };
 		0969D1B91C60099600A2142B /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		0969D1BA1C60099600A2142B /* Dip-UI.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Dip-UI.podspec"; path = "../Dip-UI.podspec"; sourceTree = "<group>"; };
 		0969D1BB1C60099600A2142B /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -29,7 +28,6 @@
 		09B0361F1C5E8029001EA5B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09B036281C5E812D001EA5B7 /* StoryboardInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryboardInstantiatable.swift; path = ../../Sources/StoryboardInstantiatable.swift; sourceTree = "<group>"; };
 		09B0365A1C5E836B001EA5B7 /* DipUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DipUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		09CDAB9D1D63B12F0040428C /* Dip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dip.framework; path = ../Carthage/Build/tvOS/Dip.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D387641D8E97E600483D0D /* DipUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,16 +49,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0926247F1C5E8A7F00A31D1A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				09CDAB9D1D63B12F0040428C /* Dip.framework */,
-				092BACA81D63B0F00017CE47 /* Dip.framework */,
-				092BACA61D63B0810017CE47 /* Dip.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		0969D1B81C60098400A2142B /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +65,6 @@
 			children = (
 				09B036101C5E8028001EA5B7 /* DipUI */,
 				09B0361C1C5E8029001EA5B7 /* DipUITests */,
-				0926247F1C5E8A7F00A31D1A /* Frameworks */,
 				09B0360F1C5E8028001EA5B7 /* Products */,
 				0969D1B81C60098400A2142B /* Podspec Metadata */,
 			);
@@ -173,7 +161,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					09B036171C5E8029001EA5B7 = {
@@ -282,8 +270,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -320,6 +310,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -341,8 +332,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -371,6 +364,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
