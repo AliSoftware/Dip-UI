@@ -71,10 +71,7 @@ extension DependencyContainer {
    
    */
   public func resolveDependenciesOf<T>(instance: T, tag: Tag? = nil) throws {
-    try resolve(tag: tag) { (_: () throws -> T) in
-      //Fixes bug with rethrows https://bugs.swift.org/browse/SR-680
-      try ({ instance } as () throws -> T)()
-    }
+    try resolve(tag: tag) { (_: () throws -> T) in instance }
   }
 }
 
@@ -161,33 +158,28 @@ extension NSObject {
 #else
 import WatchKit
   
+let swizzleAwakeWithContext: Void = {
+  let originalSelector = #selector(WKInterfaceController.awakeWithContext(_:))
+  let swizzledSelector = #selector(WKInterfaceController.dip_awakeWithContext(_:))
+  
+  let originalMethod = class_getInstanceMethod(WKInterfaceController.self, originalSelector)
+  let swizzledMethod = class_getInstanceMethod(WKInterfaceController.self, swizzledSelector)
+  
+  let didAddMethod = class_addMethod(WKInterfaceController.self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+  
+  if didAddMethod {
+    class_replaceMethod(WKInterfaceController.self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
+  } else {
+    method_exchangeImplementations(originalMethod, swizzledMethod)
+  }
+}()
+  
 extension WKInterfaceController {
   public override class func initialize() {
-    struct Static {
-      static var token: dispatch_once_t = 0
-    }
-    
     // make sure this isn't a subclass
     guard self == WKInterfaceController.self else { return }
-    
-    dispatch_once(&Static.token) {
-      let originalSelector = #selector(WKInterfaceController.awakeWithContext(_:))
-      let swizzledSelector = #selector(WKInterfaceController.dip_awakeWithContext(_:))
-      
-      let originalMethod = class_getInstanceMethod(self, originalSelector)
-      let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-      
-      let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
-      
-      if didAddMethod {
-        class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
-      } else {
-        method_exchangeImplementations(originalMethod, swizzledMethod)
-      }
-    }
+    swizzleAwakeWithContext
   }
-  
-  // MARK: - Method Swizzling
   
   func dip_awakeWithContext(context: AnyObject?) {
     defer { self.dip_awakeWithContext(context) }
