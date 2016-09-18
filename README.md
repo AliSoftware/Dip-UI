@@ -31,11 +31,11 @@ Let's say you want to use Dip to inject dependencies in `MyViewController` class
 
 ```swift
 class MyViewController: UIViewController {
-  var logger: Logger!
-  var tracker: Tracker!
-  var router: Router!
-  var presenter: MyViewControllerPresenter!
-  var service: MyViewControllerService!
+  var logger: Logger?
+  var tracker: Tracker?
+  var router: Router?
+  var presenter: MyViewControllerPresenter?
+  var service: MyViewControllerService?
   
   /*...*/
 }
@@ -64,11 +64,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     container.register(tag: "myVC") { MyViewController() }
       .resolvingProperties { container, controller in
-        container.logger 		= try container.resolve() as Logger
-        container.tracker 		= try container.resolve() as Tracker
-        container.router 		= try container.resolve() as Router
-        container.presenter 	= try container.resolve() as MyViewControllerPresenter
-        container.service 		= try container.resolve() as MyViewControllerService
+        container.logger    = try container.resolve() as Logger
+        container.tracker   = try container.resolve() as Tracker
+        container.router 	= try container.resolve() as Router
+        container.presenter = try container.resolve() as MyViewControllerPresenter
+        container.service 	= try container.resolve() as MyViewControllerService
       }
       
       DependencyContainer.uiContainers = [container]

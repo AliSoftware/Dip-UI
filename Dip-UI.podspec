@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Dip-UI"
-  s.version          = "0.2.2"
+  s.version          = "1.0.0"
   s.summary          = "Dip UI extension"
 
   s.description      = <<-DESC
@@ -19,11 +19,12 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
   s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
 
   s.requires_arc = true
 
   s.source_files = 'Sources/**/*.swift'
 
-  s.dependency 'Dip', '>= 4.1.0'
+  s.dependency 'Dip', '~> 5.0.1'
 
 end
