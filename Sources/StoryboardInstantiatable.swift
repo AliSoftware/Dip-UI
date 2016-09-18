@@ -75,7 +75,13 @@ extension DependencyContainer {
   }
 }
 
-public protocol StoryboardInstantiatable {
+#if os(watchOS)
+  public protocol StoryboardInstantiatableType {}
+#else
+  public typealias StoryboardInstantiatableType = NSObjectProtocol
+#endif
+
+public protocol StoryboardInstantiatable: StoryboardInstantiatableType {
   
   /**
    This method will be called if you set a `dipTag` attirbute on the object in a storyboard.
@@ -174,7 +180,7 @@ let swizzleAwakeWithContext: Void = {
   }
 }()
   
-extension WKInterfaceController {
+extension WKInterfaceController: StoryboardInstantiatableType {
   public override class func initialize() {
     // make sure this isn't a subclass
     guard self == WKInterfaceController.self else { return }
