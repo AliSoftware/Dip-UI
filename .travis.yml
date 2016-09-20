@@ -16,7 +16,7 @@ script:
   - set -o pipefail && xcodebuild -project DipUI/DipUI.xcodeproj -scheme DipUI -destination "platform=iOS Simulator,name=iPhone 6S" test | xcpretty
   - set -o pipefail && xcodebuild -project DipUI/DipUI.xcodeproj -scheme DipUI -destination "platform=tvOS Simulator,name=Apple TV 1080p" test | xcpretty
   - set -o pipefail && xcodebuild -project DipUI/DipUI.xcodeproj -scheme DipUI -destination "platform=watchOS Simulator,name=Apple Watch - 38mm" build | xcpretty
-  - pod repo update --silent && pod spec lint
+#  - pod repo update --silent && pod spec lint
   - carthage build --no-skip-current
 
 notifications:
