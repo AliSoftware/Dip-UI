@@ -29,18 +29,35 @@ import XCTest
   import UIKit
   typealias Storyboard = UIStoryboard
   typealias ViewController = UIViewController
+  
+  extension UIStoryboard {
+    @nonobjc
+    @discardableResult func instantiateViewControllerWithIdentifier(_ identifier: String) -> UIViewController {
+      return instantiateViewController(withIdentifier: identifier)
+    }
+  }
+
 #else
   import AppKit
   typealias Storyboard = NSStoryboard
   typealias ViewController = NSViewController
   
   extension NSStoryboard {
-    func instantiateViewControllerWithIdentifier(identifier: String) -> NSViewController {
-      return instantiateControllerWithIdentifier(identifier) as! NSViewController
+    @discardableResult func instantiateViewControllerWithIdentifier(_ identifier: String) -> NSViewController {
+      return instantiateController(withIdentifier: identifier) as! NSViewController
     }
   }
   
 #endif
+
+#if os(iOS)
+  let storyboardName = "UIStoryboard"
+#elseif os(tvOS)
+  let storyboardName = "TVStoryboard"
+#else
+  let storyboardName = "NSStoryboard"
+#endif
+
 
 class DipViewController: ViewController, StoryboardInstantiatable {}
 class NilTagViewController: ViewController, StoryboardInstantiatable {}
@@ -48,8 +65,8 @@ class NilTagViewController: ViewController, StoryboardInstantiatable {}
 class DipUITests: XCTestCase {
   
   let storyboard: Storyboard = {
-    let bundle = NSBundle(forClass: DipUITests.self)
-    return Storyboard(name: String(Storyboard.self), bundle: bundle)
+    let bundle = Bundle(for: DipUITests.self)
+    return Storyboard(name: storyboardName, bundle: bundle)
   }()
   
   func testThatViewControllerHasDipTagProperty() {
@@ -170,13 +187,13 @@ class OtherServiceImp: OtherService {
 
 
 protocol SomeScreen: class {
-  var someService: SomeService! { get set }
-  var otherService: OtherService! { get set }
+  var someService: SomeService? { get set }
+  var otherService: OtherService? { get set }
 }
 
 class ViewControllerImp: SomeScreen, SomeServiceDelegate, OtherServiceDelegate {
-  var someService: SomeService!
-  var otherService: OtherService!
+  var someService: SomeService?
+  var otherService: OtherService?
   init(){}
 }
 
@@ -187,14 +204,14 @@ extension DipUITests {
     
     //given
     var factoryCalled = false
-    container.register(.Shared) { () -> SomeScreen in
+    container.register(.shared) { () -> SomeScreen in
       factoryCalled = true
       return ViewControllerImp() as SomeScreen
     }
     
     //when
     let screen = ViewControllerImp()
-    try! container.resolveDependenciesOf(screen as SomeScreen)
+    try! container.resolveDependencies(of: screen as SomeScreen)
     
     //then
     XCTAssertFalse(factoryCalled, "Container should not create new instance when resolving dependencies of external instance.")
@@ -204,17 +221,17 @@ extension DipUITests {
     let container = DependencyContainer()
 
     //given
-    container.register(.Shared) { ViewControllerImp() as SomeScreen }
+    container.register(.shared) { ViewControllerImp() as SomeScreen }
       .resolvingProperties { container, resolved in
         
         //manually provide resolved instance for the delegate properties
         resolved.someService = try container.resolve() as SomeService
-        resolved.someService.delegate = resolved as? SomeServiceDelegate
+        resolved.someService?.delegate = resolved as? SomeServiceDelegate
         resolved.otherService = try container.resolve(arguments: resolved as! OtherServiceDelegate) as OtherService
     }
     
-    container.register(.Shared) { SomeServiceImp() as SomeService }
-    container.register(.Shared) { OtherServiceImp(delegate: $0) as OtherService }
+    container.register(.shared) { SomeServiceImp() as SomeService }
+    container.register(.shared) { OtherServiceImp(delegate: $0) as OtherService }
     
     //when
     let screen = try! container.resolve() as SomeScreen
@@ -223,8 +240,8 @@ extension DipUITests {
     XCTAssertNotNil(screen.someService)
     XCTAssertNotNil(screen.otherService)
     
-    XCTAssertTrue(screen.someService.delegate === screen)
-    XCTAssertTrue(screen.otherService.delegate === screen)
+    XCTAssertTrue(screen.someService?.delegate === screen)
+    XCTAssertTrue(screen.otherService?.delegate === screen)
   }
   
 }

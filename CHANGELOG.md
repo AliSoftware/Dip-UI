@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.0.0
+
+* Swift 3 support
+  [#14](https://github.com/AliSoftware/Dip/pull/14), [@ilyapuchka](https://github.com/ilyapuchka)
+* Added watchOS support
+  [#12](https://github.com/AliSoftware/Dip/pull/12), [#13](https://github.com/AliSoftware/Dip/pull/13), [@ilyapuchka](https://github.com/ilyapuchka)
+
 ## 0.2.2
 
 * Fixed build warning when calling non-throwing `resolve` with `try`.
