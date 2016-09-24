@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.1
+
+* Fixed Podspec
+
 ## 1.0.0
 
 * Swift 3 support
