@@ -70,13 +70,8 @@ extension DependencyContainer {
    - seealso: `register(tag:_:factory:)`, `didInstantiateFromStoryboard(_:tag:)`
    
    */
-  public func resolveDependencies(of instance: Any, type: Any.Type, tag: Tag? = nil) throws {
-    let _ = try resolve(type, tag: tag, builder: { (_: () throws -> Any) in instance })
-  }
-  
-  @available(*, deprecated: 1.1.0, message: "Use resolveDependencies(of:type:tag:)")
   public func resolveDependencies<T>(of instance: T, tag: Tag? = nil) throws {
-    try resolveDependencies(of: instance, type: T.self, tag: tag)
+    let _ = try resolve(tag: tag) { (_: () throws -> T) in instance }
   }
 }
 
@@ -117,7 +112,7 @@ public protocol StoryboardInstantiatable: StoryboardInstantiatableType {
    extension MyViewController: StoryboardInstantiatable {
      func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag) {
        //resolve dependencies of the instance as SomeProtocol type
-       try! container.resolveDependenciesOf(self, type: SomeProtocol.self, tag: tag)
+       try! container.resolveDependenciesOf(self as SomeProtocol, tag: tag)
        //do some additional setup here
      }
    }
@@ -129,7 +124,7 @@ public protocol StoryboardInstantiatable: StoryboardInstantiatableType {
 
 extension StoryboardInstantiatable {
   public func didInstantiateFromStoryboard(_ container: DependencyContainer, tag: DependencyContainer.Tag?) throws {
-    try container.resolveDependencies(of: self, type: type(of: self), tag: tag)
+    try container.resolveDependencies(of: self, tag: tag)
   }
 }
 
@@ -143,20 +138,22 @@ extension StoryboardInstantiatable {
   
 let DipTagAssociatedObjectKey = UnsafeMutablePointer<Int8>.allocate(capacity: 1)
 
-extension NSObject: StoryboardInstantiatable {
+extension NSObject {
   
-  ///A string tag that will be used to resolve dependencies of this instance.
+  ///A string tag that will be used to resolve dependencies of this instance
+  ///if it implements `StoryboardInstantiatable` protocol.
   private(set) public var dipTag: String? {
     get {
       return objc_getAssociatedObject(self, DipTagAssociatedObjectKey) as? String
     }
     set {
       objc_setAssociatedObject(self, DipTagAssociatedObjectKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+      guard let instantiatable = self as? StoryboardInstantiatable else { return }
       
       let tag = dipTag.map(DependencyContainer.Tag.String)
       
       for container in DependencyContainer.uiContainers {
-        guard let _ = try? didInstantiateFromStoryboard(container, tag: tag) else { continue }
+        guard let _ = try? instantiatable.didInstantiateFromStoryboard(container, tag: tag) else { continue }
         break
       }
     }
