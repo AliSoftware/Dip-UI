@@ -59,8 +59,8 @@ import XCTest
 #endif
 
 
-class DipViewController: ViewController, StoryboardInstantiatable {}
-class NilTagViewController: ViewController, StoryboardInstantiatable {}
+class DipViewController: ViewController {}
+class NilTagViewController: ViewController {}
 
 class DipUITests: XCTestCase {
   
@@ -200,6 +200,7 @@ class ViewControllerImp: SomeScreen, SomeServiceDelegate, OtherServiceDelegate {
 extension DipUITests {
   
   func testThatItDoesNotCreateNewInstanceWhenResolvingDependenciesOfExternalInstance() {
+    Dip.logLevel = .Verbose
     let container = DependencyContainer()
     
     //given
@@ -211,7 +212,7 @@ extension DipUITests {
     
     //when
     let screen = ViewControllerImp()
-    try! container.resolveDependencies(of: screen as SomeScreen)
+    try! container.resolveDependencies(of: screen as SomeScreen, type: SomeScreen.self)
     
     //then
     XCTAssertFalse(factoryCalled, "Container should not create new instance when resolving dependencies of external instance.")
