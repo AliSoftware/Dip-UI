@@ -58,7 +58,6 @@ import XCTest
   let storyboardName = "NSStoryboard"
 #endif
 
-
 class DipViewController: ViewController, StoryboardInstantiatable {}
 class NilTagViewController: ViewController, StoryboardInstantiatable {}
 
