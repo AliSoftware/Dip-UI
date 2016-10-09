@@ -153,8 +153,12 @@ extension NSObject {
       let tag = dipTag.map(DependencyContainer.Tag.String)
       
       for container in DependencyContainer.uiContainers {
-        guard let _ = try? instantiatable.didInstantiateFromStoryboard(container, tag: tag) else { continue }
-        break
+        do {
+          _ = try instantiatable.didInstantiateFromStoryboard(container, tag: tag)
+          break
+        } catch {
+          print(error)
+        }
       }
     }
   }
