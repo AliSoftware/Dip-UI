@@ -28,16 +28,17 @@ extension DependencyContainer {
   ///Containers that will be used to resolve dependencies of instances, created by stroyboards.
   static public var uiContainers: [DependencyContainer] = []
   
+  #if swift(>=3.0)
   /**
    Resolves dependencies of passed in instance.
    Use this method to resolve dependencies of object created by storyboard.
    The type of the instance should be registered in the container.
    
-   You should call this method only from implementation of
-   `didInstantiateFromStoryboard(_:tag:)` of `StoryboardInstantiatable` protocol.
+   You should call this method only from implementation of `didInstantiateFromStoryboard(_:tag:)`
+   of `StoryboardInstantiatable` protocol if you override its default implementation.
    
-   This method will do the same as `resolve(tag:)`, but instead of creating new intance
-   it will use passed in instance as resolved instance.
+   This method will do the same as `resolve(tag:) as T`, but instead of creating 
+   a new intance with a registered factory it will use passed in instance as a resolved instance.
    
    - parameters:
       - instance: The object which dependencies should be resolved
@@ -46,8 +47,16 @@ extension DependencyContainer {
    **Example**:
    
    ```swift
-   class ViewController: UIViewController, ServiceDelegate {
+   class ViewController: UIViewController, ServiceDelegate, StoryboardInstantiatable {
      var service: Service?
+
+     func didInstantiateFromStoryboard(_ container: DependencyContainer, tag: DependencyContainer.Tag?) throws {
+       try container.resolveDependencies(of: self as ServiceDelegate, tag: "vc")
+     }
+   }
+   
+   class ServiceImp: Service {
+     weak var delegate: ServiceDelegate?
    }
    
    container.register(tag: "vc") { ViewController() }
@@ -56,23 +65,63 @@ extension DependencyContainer {
        controller.service.delegate = controller
      }
    
+   container.register { ServiceImp() as Service }
+   ```
+   
+   - seealso: `register(_:type:tag:factory:)`, `didInstantiateFromStoryboard(_:tag:)`
+   
+   */
+  public func resolveDependencies<T>(of instance: T, tag: Tag? = nil) throws {
+    _ = try resolve(tag: tag) { (_: () throws -> T) in instance }
+  }
+  #else
+  
+  /**
+   Resolves dependencies of passed in instance.
+   Use this method to resolve dependencies of object created by storyboard.
+   The type of the instance should be registered in the container.
+   
+   You should call this method only from implementation of `didInstantiateFromStoryboard(_:tag:)`
+   of `StoryboardInstantiatable` protocol if you override its default implementation.
+   
+   This method will do the same as `resolve(tag:) as T`, but instead of creating
+   a new intance with a registered factory it will use passed in instance as a resolved instance.
+   
+   - parameters:
+      - instance: The object which dependencies should be resolved
+      - tag: An optional tag used to register the type (`T`) in the container
+   
+   **Example**:
+   
+   ```swift
+   class ViewController: UIViewController, ServiceDelegate, StoryboardInstantiatable {
+     var service: Service?
+     
+     func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) throws {
+       try container.resolveDependenciesOf(self as ServiceDelegate, tag: "vc")
+     }
+   }
+   
    class ServiceImp: Service {
      weak var delegate: ServiceDelegate?
    }
    
-   container.register { ServiceImp() as Service }
+   container.register(tag: "vc") { ViewController() }
+     .resolvingProperties { container, controller in
+       controller.service = try container.resolve() as Service
+       controller.service.delegate = controller
+   }
    
-   let controller = ...
-   container.resolveDependenciesOf(controller, tag: "vc")
-   //controller.service?.delegate === controller
+   container.register { ServiceImp() as Service }
    ```
    
-   - seealso: `register(tag:_:factory:)`, `didInstantiateFromStoryboard(_:tag:)`
+   - seealso: `register(_:type:tag:factory:)`, `didInstantiateFromStoryboard(_:tag:)`
    
    */
-  public func resolveDependencies<T>(of instance: T, tag: Tag? = nil) throws {
-    let _ = try resolve(tag: tag) { (_: () throws -> T) in instance }
+  public func resolveDependenciesOf<T>(instance: T, tag: Tag? = nil) throws {
+    _ = try resolve(tag: tag) { (_: () throws -> T) in instance }
   }
+  #endif
 }
 
 #if os(watchOS)
@@ -82,27 +131,29 @@ extension DependencyContainer {
 #endif
 
 public protocol StoryboardInstantiatable: StoryboardInstantiatableType {
-  
+  #if swift(>=3.0)
+
   /**
-   This method will be called if you set a `dipTag` attirbute on the object in a storyboard.
+   This method will be called if you set a `dipTag` attirbute on the object in a storyboard
+   that conforms to `StoryboardInstantiatable` protocol.
    
    - parameters:
       - tag: The tag value, that was set on the object in a storyboard
       - container: The `DependencyContainer` associated with storyboards
    
-   The type that implements this protocol should be registered in `UIStoryboard.container`.
+   The type that implements `StoryboardInstantiatable` protocol should be registered in `UIStoryboard.container`.
    Default implementation of that method calls `resolveDependenciesOf(_:tag:)`
    and pass it `self` instance and the tag.
    
    Usually you will not need to override the default implementation of this method
-   if you registered the type of the instance as a concret type in the container.
+   if you registered the type of the instance as a concrete type in the container.
    Then you only need to add conformance to `StoryboardInstantiatable`.
    
    You may want to override it if you want to add custom logic before/after resolving dependencies
    or you want to resolve the instance as implementation of some protocol which it conforms to.
    
-   - warning: This method will be called after `init?(coder:)` but before `awakeFromNib` method.
-              Thus the instance may be not completely setup yet. On watchOS it will be called before `awakeWithContext(_:)`.
+   - warning: This method will be called after `init?(coder:)` but before `awakeFromNib` method of `NSObject`.
+              On watchOS this method will be called before `awakeWithContext(_:)`.
    
    **Example**:
    
@@ -110,22 +161,68 @@ public protocol StoryboardInstantiatable: StoryboardInstantiatableType {
    extension MyViewController: SomeProtocol { ... }
    
    extension MyViewController: StoryboardInstantiatable {
-     func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag) {
+     func didInstantiateFromStoryboard(_ container: DependencyContainer, tag: DependencyContainer.Tag) throws {
        //resolve dependencies of the instance as SomeProtocol type
-       try! container.resolveDependenciesOf(self as SomeProtocol, tag: tag)
+       try container.resolveDependencies(of: self as SomeProtocol, tag: tag)
        //do some additional setup here
      }
    }
    ```
-   
   */
   func didInstantiateFromStoryboard(_ container: DependencyContainer, tag: DependencyContainer.Tag?) throws
+  
+  #else
+
+  /**
+   This method will be called if you set a `dipTag` attirbute on the object in a storyboard
+   that conforms to `StoryboardInstantiatable` protocol.
+   
+   - parameters:
+      - tag: The tag value, that was set on the object in a storyboard
+      - container: The `DependencyContainer` associated with storyboards
+   
+   The type that implements `StoryboardInstantiatable` protocol should be registered in `UIStoryboard.container`.
+   Default implementation of that method calls `resolveDependenciesOf(_:tag:)`
+   and pass it `self` instance and the tag.
+   
+   Usually you will not need to override the default implementation of this method
+   if you registered the type of the instance as a concrete type in the container.
+   Then you only need to add conformance to `StoryboardInstantiatable`.
+   
+   You may want to override it if you want to add custom logic before/after resolving dependencies
+   or you want to resolve the instance as implementation of some protocol which it conforms to.
+   
+   - warning: This method will be called after `init?(coder:)` but before `awakeFromNib` method of `NSObject`.
+              On watchOS this method will be called before `awakeWithContext(_:)`.
+   
+   **Example**:
+   
+   ```swift
+   extension MyViewController: SomeProtocol { ... }
+   
+   extension MyViewController: StoryboardInstantiatable {
+     func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag) throws {
+       //resolve dependencies of the instance as SomeProtocol type
+       try container.resolveDependenciesOf(self as SomeProtocol, tag: tag)
+       //do some additional setup here
+     }
+   }
+   ```
+   */
+  func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) throws
+  #endif
 }
 
 extension StoryboardInstantiatable {
+  #if swift(>=3.0)
   public func didInstantiateFromStoryboard(_ container: DependencyContainer, tag: DependencyContainer.Tag?) throws {
     try container.resolveDependencies(of: self, tag: tag)
   }
+  #else
+  public func didInstantiateFromStoryboard(container: DependencyContainer, tag: DependencyContainer.Tag?) throws {
+    try container.resolveDependenciesOf(self, tag: tag)
+  }
+  #endif
 }
 
 #if os(iOS) || os(tvOS) || os(OSX)
@@ -136,7 +233,11 @@ extension StoryboardInstantiatable {
   import AppKit
 #endif
   
+#if swift(>=3.0)
 let DipTagAssociatedObjectKey = UnsafeMutablePointer<Int8>.allocate(capacity: 1)
+#else
+let DipTagAssociatedObjectKey = UnsafeMutablePointer<Int8>.alloc(1)
+#endif
 
 extension NSObject {
   
@@ -153,8 +254,12 @@ extension NSObject {
       let tag = dipTag.map(DependencyContainer.Tag.String)
       
       for container in DependencyContainer.uiContainers {
-        guard let _ = try? instantiatable.didInstantiateFromStoryboard(container, tag: tag) else { continue }
-        break
+        do {
+          try instantiatable.didInstantiateFromStoryboard(container, tag: tag)
+          break
+        } catch {
+          print(error)
+        }
       }
     }
   }
@@ -165,8 +270,13 @@ extension NSObject {
 import WatchKit
   
 let swizzleAwakeWithContext: Void = {
-  let originalSelector = #selector(WKInterfaceController.awake(withContext:))
-  let swizzledSelector = #selector(WKInterfaceController.dip_awake(withContext:))
+  #if swift(>=3.0)
+    let originalSelector = #selector(WKInterfaceController.awake(withContext:))
+    let swizzledSelector = #selector(WKInterfaceController.dip_awake(withContext:))
+  #else
+    let originalSelector = #selector(WKInterfaceController.awakeWithContext(_:))
+    let swizzledSelector = #selector(WKInterfaceController.dip_awakeWithContext(_:))
+  #endif
   
   let originalMethod = class_getInstanceMethod(WKInterfaceController.self, originalSelector)
   let swizzledMethod = class_getInstanceMethod(WKInterfaceController.self, swizzledSelector)
@@ -181,12 +291,13 @@ let swizzleAwakeWithContext: Void = {
 }()
   
 extension WKInterfaceController: StoryboardInstantiatableType {
+  #if swift(>=3.0)
   open override class func initialize() {
     // make sure this isn't a subclass
     guard self == WKInterfaceController.self else { return }
     swizzleAwakeWithContext
   }
-  
+
   func dip_awake(withContext context: AnyObject?) {
     defer { self.dip_awake(withContext: context) }
     guard let instantiatable = self as? StoryboardInstantiatable else { return }
@@ -196,9 +307,23 @@ extension WKInterfaceController: StoryboardInstantiatableType {
       break
     }
   }
+  #else
+  override class func initialize() {
+    // make sure this isn't a subclass
+    guard self == WKInterfaceController.self else { return }
+    swizzleAwakeWithContext
+  }
+  
+  func dip_awakeWithContext(context: AnyObject?) {
+    defer { self.dip_awakeWithContext(context) }
+    guard let instantiatable = self as? StoryboardInstantiatable else { return }
+    
+    for container in DependencyContainer.uiContainers {
+      guard let _ = try? instantiatable.didInstantiateFromStoryboard(container, tag: nil) else { continue }
+      break
+    }
+  }
+  #endif
 }
 
 #endif
-
-
-
