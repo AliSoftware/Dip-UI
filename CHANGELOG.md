@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.2
+
+* Added Swift 2.3 compatibility. `swift2.3` brunch is no longer maintained.  
+  [#24](https://github.com/AliSoftware/Dip/issues/24), [@ilyapuchka](https://github.com/ilyapuchka)
+
 ## 1.0.1
 
 * Fixed Podspec
