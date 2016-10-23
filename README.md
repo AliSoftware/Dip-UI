@@ -10,18 +10,39 @@ Dip-UI is an extension for [Dip](https://github.com/AliSoftware/Dip) that provid
 
 ## Installation
 
-Dip-UI is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+You can install Dip-UI using your favorite dependency manager:
+
+<details>
+<summary>CocoaPods</summary>
+
+`pod "Dip-UI"`
+
+To build for Swift 2.3 add this code to the bottom of your Podfile
 
 ```ruby
-pod "Dip-UI"
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '2.3'
+    end
+  end
+end
 ```
 
-If you use _Carthage_ add this line to your Cartfile:
+> You need at least 1.1.0.rc.2 version of CocoaPods.
+
+</details>
+
+<details>
+<summary>Carthage</summary>
 
 ```
 github "AliSoftware/Dip-UI"
 ```
+
+To build for Swift 2.3 run Carthage with `--toolchain com.apple.dt.toolchain.Swift_2_3` option.
+
+</details>
 
 ## Usage
 
