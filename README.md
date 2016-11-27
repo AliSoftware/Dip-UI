@@ -71,7 +71,7 @@ To injecte dependencies in this view controller when it is instantiated from sto
 - Register the dependencies in the `DependencyContainer`, as well as `MyViewController`:
 
 ```swift
-import Dip
+import DipUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
