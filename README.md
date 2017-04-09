@@ -3,6 +3,7 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/Dip-UI.svg?style=flat)](http://cocoapods.org/pods/Dip-UI)
 [![Platform](https://img.shields.io/cocoapods/p/Dip-UI.svg?style=flat)](http://cocoapods.org/pods/Dip-UI)
+[![Swift Version](https://img.shields.io/badge/Swift-3.0--3.1-F16D39.svg?style=flat)](https://developer.apple.com/swift)
 
 # Dip-UI
 

@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1
+
+* Dropped Swift 2.3 support.  
+  [#27](https://github.com/AliSoftware/Dip/issues/27), [@ilyapuchka](https://github.com/ilyapuchka)
+
 ## 1.0.2
 
 * Added Swift 2.3 compatibility. `swift2.3` brunch is no longer maintained.  
