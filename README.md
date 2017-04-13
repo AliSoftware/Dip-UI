@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     container.register { MyViewControllerPresenterImp() as MyViewControllerPresenter }
     container.register { MyViewControllerServiceImp() as MyViewControllerService }
     
-    container.register(tag: "myVC") { MyViewController() }
+    container.registerViewController(tag: "myVC") { MyViewController() }
       .resolvingProperties { container, controller in
         container.logger    = try container.resolve() as Logger
         container.tracker   = try container.resolve() as Tracker
@@ -99,6 +99,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ```
  
 > Note: All the depdencies are registered as implementations of abstractions (protocols). `MyViewController` is registered as concrete type. But you can also make your view controller conform to some protocols and register them as implementations of these protocols.
+ 
+ ```swift
+ container.registerViewController(tag: "myVC") { MyViewController() as MyViewControllerProtocol & StoryboardInstantiatable }
+ ```
+ 
+ - Make your view controller class conform to `StoryboardInstantiatable` protocol:
+ 
+ ```swift
  
 - Set the container as one that will be used to inject dependencies in objects created by storyboards. You do it by setting static `uiContainers` property of `DependencyContainer ` class: 
 
