@@ -97,7 +97,7 @@ class DipUITests: XCTestCase {
   func testThatItResolvesIfContainerAndStringTagAreSet() {
     var resolved = false
     let container = DependencyContainer()
-    container.register(tag: "vc") { DipViewController() }
+    container.registerViewController(tag: "vc") { DipViewController() }
       .resolvingProperties { _, _ in
         resolved = true
     }
@@ -110,7 +110,7 @@ class DipUITests: XCTestCase {
   func testThatItResolvesIfContainerAndNilTagAreSet() {
     var resolved = false
     let container = DependencyContainer()
-    container.register() { NilTagViewController() }
+    container.registerViewController() { NilTagViewController() }
       .resolvingProperties { _, _ in
         resolved = true
     }
@@ -122,7 +122,7 @@ class DipUITests: XCTestCase {
 
   func testThatItDoesNotResolveIfTagDoesNotMatch() {
     let container = DependencyContainer()
-    container.register(tag: "wrong tag") { DipViewController() }
+    container.registerViewController(tag: "wrong tag") { DipViewController() }
       .resolvingProperties { _, _ in
         XCTFail("Should not resolve when container is not set.")
     }
@@ -134,7 +134,7 @@ class DipUITests: XCTestCase {
   func testThatItResolvesWithDefinitionWithNoTag() {
     var resolved = false
     let container = DependencyContainer()
-    container.register() { DipViewController() }
+    container.registerViewController() { DipViewController() }
       .resolvingProperties { _, _ in
         resolved = true
     }
@@ -148,7 +148,7 @@ class DipUITests: XCTestCase {
     var resolved = false
     let container1 = DependencyContainer()
     let container2 = DependencyContainer()
-    container2.register(tag: "vc") { DipViewController() }
+    container2.registerViewController(tag: "vc") { DipViewController() }
       .resolvingProperties { container, _ in
         XCTAssertTrue(container === container2)
         resolved = true
