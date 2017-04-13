@@ -86,11 +86,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     container.register(tag: "myVC") { MyViewController() }
       .resolvingProperties { container, controller in
-        container.logger    = try container.resolve() as Logger
-        container.tracker   = try container.resolve() as Tracker
-        container.router 	= try container.resolve() as Router
-        container.presenter = try container.resolve() as MyViewControllerPresenter
-        container.service 	= try container.resolve() as MyViewControllerService
+        controller.logger    = try container.resolve() as Logger
+        controller.tracker   = try container.resolve() as Tracker
+        controller.router 	= try container.resolve() as Router
+        controller.presenter = try container.resolve() as MyViewControllerPresenter
+        controller.service 	= try container.resolve() as MyViewControllerService
       }
       
       DependencyContainer.uiContainers = [container]
