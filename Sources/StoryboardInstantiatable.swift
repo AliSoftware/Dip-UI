@@ -75,13 +75,11 @@ extension DependencyContainer {
   }
   
   /**
-   Register factory for type `T` which has to conform to `StoryboardInstantiatable` and associate it with an optional tag.
+   Register storyboard type `T` which has to conform to `StoryboardInstantiatable` and associate it with an optional tag.
    
    - parameters:
-   - scope: The scope to use for instance created by the factory. Default value is `Shared`.
-   - type: Type to register definition for. Default value is return value of factory.
+   - type: Storyboard type to register definition for.
    - tag: The arbitrary tag to associate this factory with. Pass `nil` to associate with any tag. Default value is `nil`.
-   - factory: The factory that produces instance of `type`. Will be used to resolve instances of `type`.
    
    - returns: A registered definition.
    
@@ -100,8 +98,8 @@ extension DependencyContainer {
    
    ```
    */
-  public func registerViewController<T: StoryboardInstantiatable>(_ scope: ComponentScope = .shared, type: T.Type = T.self, tag: DependencyTagConvertible? = nil, factory: @escaping () throws -> T) -> Dip.Definition<T, ()> {
-    return register(scope, type: type, tag: tag, factory: factory)
+  public func register<T: NSObject>(storyboardType type: T.Type, tag: DependencyTagConvertible? = nil) -> Dip.Definition<T, ()> where T: StoryboardInstantiatable {
+    return register(.unique, type: type, tag: tag, factory: { T() })
   }
 
 }
