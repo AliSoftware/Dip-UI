@@ -13,37 +13,11 @@ Dip-UI is an extension for [Dip](https://github.com/AliSoftware/Dip) that provid
 
 You can install Dip-UI using your favorite dependency manager:
 
-<details>
-<summary>CocoaPods</summary>
-
-`pod "Dip-UI"`
-
-To build for Swift 2.3 add this code to the bottom of your Podfile
-
-```ruby
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '2.3'
-    end
-  end
-end
-```
+CocoaPods: `pod "Dip-UI"`
 
 > You need at least 1.1.0.rc.2 version of CocoaPods.
 
-</details>
-
-<details>
-<summary>Carthage</summary>
-
-```
-github "AliSoftware/Dip-UI"
-```
-
-To build for Swift 2.3 run Carthage with `--toolchain com.apple.dt.toolchain.Swift_2_3` option.
-
-</details>
+Carthage: `github "AliSoftware/Dip-UI"`
 
 ## Usage
 
@@ -78,41 +52,43 @@ import DipUI
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   let container = DependencyContainer { container in
-    container.register(.Singleton) { LoggerImp() as Logger }
-    container.register(.Singleton) { TrackerImp() as Tracker }
-    container.register(.Singleton) { RouterImp() as Router }
+    container.register(.singleton) { LoggerImp() as Logger }
+    container.register(.singleton) { TrackerImp() as Tracker }
+    container.register(.singleton) { RouterImp() as Router }
     container.register { MyViewControllerPresenterImp() as MyViewControllerPresenter }
     container.register { MyViewControllerServiceImp() as MyViewControllerService }
     
     container.registerViewController(tag: "myVC") { MyViewController() }
       .resolvingProperties { container, controller in
-        controller.logger    = try container.resolve() as Logger
-        controller.tracker   = try container.resolve() as Tracker
-        controller.router 	= try container.resolve() as Router
-        controller.presenter = try container.resolve() as MyViewControllerPresenter
-        controller.service 	= try container.resolve() as MyViewControllerService
+        controller.logger     = try container.resolve() as Logger
+        controller.tracker    = try container.resolve() as Tracker
+        controller.router     = try container.resolve() as Router
+        controller.presenter  = try container.resolve() as MyViewControllerPresenter
+        controller.service    = try container.resolve() as MyViewControllerService
       }
       
       DependencyContainer.uiContainers = [container]
   }
 }
 ```
- 
+
 > Note: All the depdencies are registered as implementations of abstractions (protocols). `MyViewController` is registered as concrete type. But you can also make your view controller conform to some protocols and register them as implementations of these protocols.
- 
+
  ```swift
- container.registerViewController(tag: "myVC") { MyViewController() as MyViewControllerProtocol & StoryboardInstantiatable }
+ container.register(storyboardType: MyViewController.self, tag: "myVC")
+ //or
+ container.register(tag: "myVC") { MyViewController() }
  ```
- 
- - Make your view controller class conform to `StoryboardInstantiatable` protocol:
- 
+
+- Make your view controller class conform to `StoryboardInstantiatable` protocol:
+
  ```swift
  
 - Set the container as one that will be used to inject dependencies in objects created by storyboards. You do it by setting static `uiContainers` property of `DependencyContainer ` class: 
 
-```swift
+​```swift
 DependencyContainer.uiContainers = [container]
-```
+ ```
 
 - Make your view controller class conform to `StoryboardInstantiatable` protocol:
 
@@ -133,7 +109,7 @@ Now when view controller will be loaded from a storyboard Dip-UI will intercept 
 ### StoryboardInstantiatable
 
 `StoryboardInstantiatable` protocol defines single method `didInstantiateFromStoryboard(_:tag:)` and provides its default implementation. In most cases you will not need to override it. But if you register your view controller as an impementation of some protocol instead of concrete type, or want to perform some pre/post actions, you will need to override it like this:
- 
+
 ```swift
 container.register { MyViewController() as MyScene }
 extension MyViewController: StoryboardInstantiatable {
@@ -142,7 +118,7 @@ extension MyViewController: StoryboardInstantiatable {
   }
 }
 ```
- 
+
 
 ## License
 

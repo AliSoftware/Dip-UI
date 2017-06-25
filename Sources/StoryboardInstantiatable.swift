@@ -78,24 +78,25 @@ extension DependencyContainer {
    Register storyboard type `T` which has to conform to `StoryboardInstantiatable` and associate it with an optional tag.
    
    - parameters:
-   - type: Storyboard type to register definition for.
-   - tag: The arbitrary tag to associate this factory with. Pass `nil` to associate with any tag. Default value is `nil`.
+      - type: Storyboard type to register definition for.
+      - tag: The arbitrary tag to associate this factory with. Pass `nil` to associate with any tag. Default value is `nil`.
    
    - returns: A registered definition.
    
-   - note: You should cast the factory return type to the protocol you want to register it for
-   (unless you want to register concrete type) or provide `type` parameter.
+   - note: This method will register concrete types. If you need to register 
+           as abstract types you should use standard `register` method from Dip.
+           You should cast the factory return type to the protocol you want to 
+           register it for (unless you want to register concrete type) or 
+           provide `type` parameter.
    
    - seealso: `Definition`, `ComponentScope`, `DependencyTagConvertible`
    
    **Example**:
    ```swift
-   //Register MyViewController
-   container.register(tag: "myVC") { MyViewController() }
-   .resolvingProperties { container, controller in
-      controller.service = try container.resolve() as MyViewControllerService
-   }
-   
+   // Register MyViewController
+   container.register(storyboardType: MyViewController.self)
+   // or
+   container.register(tag: "myVC") { MyViewController() as MyViewControllerType }
    ```
    */
   public func register<T: NSObject>(storyboardType type: T.Type, tag: DependencyTagConvertible? = nil) -> Dip.Definition<T, ()> where T: StoryboardInstantiatable {
