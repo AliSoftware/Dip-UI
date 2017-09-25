@@ -173,7 +173,7 @@ extension NSObject {
   
   ///A string tag that will be used to resolve dependencies of this instance
   ///if it implements `StoryboardInstantiatable` protocol.
-  private(set) public var dipTag: String? {
+  @objc private(set) public var dipTag: String? {
     get {
       return objc_getAssociatedObject(self, DipTagAssociatedObjectKey) as? String
     }
