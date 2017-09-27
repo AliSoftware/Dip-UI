@@ -44,7 +44,7 @@ import XCTest
   
   extension NSStoryboard {
     @discardableResult func instantiateViewControllerWithIdentifier(_ identifier: String) -> NSViewController {
-      return instantiateController(withIdentifier: identifier) as! NSViewController
+      return instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(identifier)) as! NSViewController
     }
   }
   
@@ -65,7 +65,7 @@ class DipUITests: XCTestCase {
   
   let storyboard: Storyboard = {
     let bundle = Bundle(for: DipUITests.self)
-    return Storyboard(name: storyboardName, bundle: bundle)
+    return Storyboard(name: NSStoryboard.Name(storyboardName), bundle: bundle)
   }()
   
   func testThatViewControllerHasDipTagProperty() {
