@@ -26,7 +26,12 @@ import Dip
 
 extension DependencyContainer {
   ///Containers that will be used to resolve dependencies of instances, created by stroyboards.
-  static public var uiContainers: [DependencyContainer] = []
+  static public var uiContainers: [DependencyContainer] = {
+    #if os(watchOS)
+      swizzleAwakeWithContext
+    #endif
+    return []
+  }()
   
   /**
    Resolves dependencies of passed in instance.
@@ -209,8 +214,8 @@ let swizzleAwakeWithContext: Void = {
   let originalSelector = #selector(WKInterfaceController.awake(withContext:))
   let swizzledSelector = #selector(WKInterfaceController.dip_awake(withContext:))
   
-  let originalMethod = class_getInstanceMethod(WKInterfaceController.self, originalSelector)
-  let swizzledMethod = class_getInstanceMethod(WKInterfaceController.self, swizzledSelector)
+  guard let originalMethod = class_getInstanceMethod(WKInterfaceController.self, originalSelector),
+    let swizzledMethod = class_getInstanceMethod(WKInterfaceController.self, swizzledSelector) else { return }
   
   let didAddMethod = class_addMethod(WKInterfaceController.self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
   
@@ -222,13 +227,8 @@ let swizzleAwakeWithContext: Void = {
 }()
   
 extension WKInterfaceController: StoryboardInstantiatableType {
-  open override class func initialize() {
-    // make sure this isn't a subclass
-    guard self == WKInterfaceController.self else { return }
-    swizzleAwakeWithContext
-  }
 
-  func dip_awake(withContext context: AnyObject?) {
+  @objc func dip_awake(withContext context: AnyObject?) {
     defer { self.dip_awake(withContext: context) }
     guard let instantiatable = self as? StoryboardInstantiatable else { return }
     
@@ -237,6 +237,7 @@ extension WKInterfaceController: StoryboardInstantiatableType {
       break
     }
   }
+  
 }
 
 #endif
