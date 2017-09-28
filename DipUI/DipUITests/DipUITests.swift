@@ -29,6 +29,7 @@ import XCTest
   import UIKit
   typealias Storyboard = UIStoryboard
   typealias ViewController = UIViewController
+  typealias StoryboardName = String
   
   extension UIStoryboard {
     @nonobjc
@@ -41,6 +42,7 @@ import XCTest
   import AppKit
   typealias Storyboard = NSStoryboard
   typealias ViewController = NSViewController
+  typealias StoryboardName = NSStoryboard.Name
   
   extension NSStoryboard {
     @discardableResult func instantiateViewControllerWithIdentifier(_ identifier: String) -> NSViewController {
@@ -65,7 +67,7 @@ class DipUITests: XCTestCase {
   
   let storyboard: Storyboard = {
     let bundle = Bundle(for: DipUITests.self)
-    return Storyboard(name: NSStoryboard.Name(storyboardName), bundle: bundle)
+    return Storyboard(name: StoryboardName(storyboardName), bundle: bundle)
   }()
   
   func testThatViewControllerHasDipTagProperty() {
