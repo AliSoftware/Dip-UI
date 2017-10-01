@@ -190,21 +190,13 @@ extension NSObject {
       
       for (index, container) in DependencyContainer.uiContainers.enumerated() {
         do {
-          log("Trying to resolve \(type(of: self)) with UI container at index \(index)")
           try instantiatable.didInstantiateFromStoryboard(container, tag: tag)
-          log("Resolved \(type(of: self))")
           return
         } catch { }
       }
     }
   }
   
-}
-  
-func log(_ message: Any) {
-  if Dip.LogLevel.Errors.rawValue <= Dip.logLevel.rawValue {
-    Dip.logger(logLevel, message)
-  }
 }
 
 #else
