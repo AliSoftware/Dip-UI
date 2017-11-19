@@ -81,12 +81,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  ```
 
 - Make your view controller class conform to `StoryboardInstantiatable` protocol:
-
- ```swift
  
 - Set the container as one that will be used to inject dependencies in objects created by storyboards. You do it by setting static `uiContainers` property of `DependencyContainer ` class: 
 
-​```swift
+```swift
 DependencyContainer.uiContainers = [container]
  ```
 
