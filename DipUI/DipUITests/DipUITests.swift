@@ -246,7 +246,7 @@ extension DipUITests {
   }
 
   func testThatSeveralUIContainersWorksWithAutoinject() {
-    class BaseVC: UIViewController {}
+    class BaseVC: ViewController {}
 
     class FooVC: BaseVC {}
     class FooOneVC: FooVC, StoryboardInstantiatable {
