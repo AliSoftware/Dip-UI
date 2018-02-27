@@ -244,5 +244,70 @@ extension DipUITests {
     XCTAssertTrue(screen.someService?.delegate === screen)
     XCTAssertTrue(screen.otherService?.delegate === screen)
   }
+
+  func testThatSeveralUIContainersWorksWithAutoinject() {
+    class BaseVC: UIViewController {}
+
+    class FooVC: BaseVC {}
+    class FooOneVC: FooVC, StoryboardInstantiatable {
+      private(set) var nest = Injected<Nest>()
+      class Nest {}
+    }
+    class FooSecVC: FooOneVC {}
+
+    class BarVC: BaseVC {}
+    class BarOneVC: BarVC {
+      private(set) var nest = Injected<Nest>()
+      class Nest {}
+    }
+    class BarSecVC: BarOneVC {}
+
+    // MARK: foo part
+    let fooUICont = DependencyContainer { container in
+      container.register(.shared) { FooOneVC() }
+      container.register(.shared) { FooSecVC() }
+    }
+
+    let fooDataCont = DependencyContainer { container in
+      container.register(.shared) { (controller: FooOneVC) -> FooOneVC.Nest in
+        return FooOneVC.Nest()
+      }
+    }
+
+    fooUICont.collaborate(with: fooDataCont)
+    fooDataCont.collaborate(with: fooUICont)
+
+    try! fooUICont.bootstrap()
+    try! fooDataCont.bootstrap()
+    DependencyContainer.uiContainers.append(fooUICont)
+
+
+    // MARK: bar part
+    let barUICont = DependencyContainer { container in
+      container.register(.shared) { BarOneVC() }
+      container.register(.shared) { BarSecVC() }
+    }
+
+    let barDataCont = DependencyContainer { container in
+      container.register(.shared) { (controller: BarOneVC) -> BarOneVC.Nest in
+        return BarOneVC.Nest()
+      }
+    }
+
+    barUICont.collaborate(with: barDataCont)
+    barDataCont.collaborate(with: barUICont)
+
+    try! barUICont.bootstrap()
+    try! barDataCont.bootstrap()
+    DependencyContainer.uiContainers.append(barUICont)
+
+    let fooSecVC = FooSecVC()
+    fooSecVC.setValue(nil, forKey: "dipTag")
+    XCTAssertNotNil(fooSecVC.nest.value)
+
+    let barSecVC = BarSecVC()
+    barSecVC.setValue(nil, forKey: "dipTag")
+    XCTAssertNotNil(barSecVC.nest.value)
+  }
   
 }
