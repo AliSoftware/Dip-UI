@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.0
+
+* Swift 4 support
+
 ## 1.1
 
 * Dropped Swift 2.3 support.  

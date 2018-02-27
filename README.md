@@ -41,7 +41,7 @@ class MyViewController: UIViewController {
 
 > Note 2: Implicitly unwrapped optionals are used here to indicate that these dependencies are required for this class. You don't have to follow this pattern and are free to use plain optionals if you prefer.
 
-To injecte dependencies in this view controller when it is instantiated from storyboard you need to follow next steps:
+To inject dependencies in this view controller when it is instantiated from storyboard you need to follow next steps:
 
 - Register the dependencies in the `DependencyContainer`, as well as `MyViewController`:
 
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     container.register { MyViewControllerPresenterImp() as MyViewControllerPresenter }
     container.register { MyViewControllerServiceImp() as MyViewControllerService }
     
-    container.registerViewController(tag: "myVC") { MyViewController() }
+    container.register(storyboardType: MyViewController.self, tag: "myVC")
       .resolvingProperties { container, controller in
         controller.logger     = try container.resolve() as Logger
         controller.tracker    = try container.resolve() as Tracker
@@ -72,21 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-> Note: All the depdencies are registered as implementations of abstractions (protocols). `MyViewController` is registered as concrete type. But you can also make your view controller conform to some protocols and register them as implementations of these protocols.
-
- ```swift
- container.register(storyboardType: MyViewController.self, tag: "myVC")
- //or
- container.register(tag: "myVC") { MyViewController() }
- ```
-
-- Make your view controller class conform to `StoryboardInstantiatable` protocol:
-
- ```swift
+> Note: All the depdencies are registered as implementations of abstractions (protocols). `MyViewController` is registered as concrete type. To register your view controller as a protocol read [here](#storyboardinstantiatable).
  
 - Set the container as one that will be used to inject dependencies in objects created by storyboards. You do it by setting static `uiContainers` property of `DependencyContainer ` class: 
 
-​```swift
+```swift
 DependencyContainer.uiContainers = [container]
  ```
 
