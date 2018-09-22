@@ -1,9 +1,11 @@
-[![CI Status](http://img.shields.io/travis/AliSoftware/Dip-UI.svg?branch=develop)](https://travis-ci.org/AliSoftware/Dip-UI)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 [![Version](https://img.shields.io/cocoapods/v/Dip-UI.svg?style=flat)](http://cocoapods.org/pods/Dip-UI)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/Dip-UI.svg?style=flat)](http://cocoapods.org/pods/Dip-UI)
 [![Platform](https://img.shields.io/cocoapods/p/Dip-UI.svg?style=flat)](http://cocoapods.org/pods/Dip-UI)
 [![Swift Version](https://img.shields.io/badge/Swift-3.0--3.1-F16D39.svg?style=flat)](https://developer.apple.com/swift)
+
+__Dip-UI is a part of Dip since version 7.0.0. Thir repository will no longer be maintained.__
 
 # Dip-UI
 
